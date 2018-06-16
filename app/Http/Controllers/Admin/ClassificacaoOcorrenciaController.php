@@ -65,7 +65,9 @@ class ClassificacaoOcorrenciaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = 'Classificações de Ocorrências';
+        $classificacao = ClassificacaoOcorrencia::findOrFail($id);
+        return view('admin.classificacoes-ocorrencia.edit', compact(['title', 'classificacao']));
     }
 
     /**

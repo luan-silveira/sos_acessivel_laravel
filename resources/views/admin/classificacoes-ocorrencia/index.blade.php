@@ -29,14 +29,14 @@
                @else
                 <tbody><tr>
                   <th>Código</th>
-                  <th>Nome</th>
+                  <th>Descrição</th>
                   <th>Ação</th>
                 </tr>
                     @foreach($classificacoes as $classificacao)
                     <tr>
                       <td>{{$classificacao->id}}</td>
                       <td>{{$classificacao->descricao}}</td>
-                      <td><input type="button" class="btn btn-xs btn-warning" value="Editar"></td>
+                      <td><a class="btn btn-xs btn-warning" href="{{route('classificacoes-ocorrencia.edit', $classificacao->id)}}">Editar</a> </td>
                     </tr>
                     @endforeach
                 @endif

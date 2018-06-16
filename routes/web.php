@@ -13,10 +13,13 @@
 
 //Route::get('/', 'Admin\DashboardController@index');
 
+Route::get('/', 'Admin\AdminController@index')->middleware('auth');
+
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
-    Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('/', 'AdminController@index');
     Route::get('atendentes', 'AtendenteController@index')->name('admin.atendentes');
     Route::resource('classificacoes-ocorrencia', 'ClassificacaoOcorrenciaController');
+    Route::resource('usuarios', 'UserController');
 });
 
 Auth::routes();

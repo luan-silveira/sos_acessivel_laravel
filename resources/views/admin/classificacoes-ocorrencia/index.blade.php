@@ -16,7 +16,7 @@
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                    <div class="input-group-btn">
-                       <a class="btn btn-sm" href="{{route('classificacoes-ocorrencia.create')}}"><i class="fa fa-plus"></i></a>
+                    <a href="{{route('classificacoes-ocorrencia.create')}}" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a>
                   </div>
                 </div>
               </div>
@@ -36,7 +36,12 @@
                     <tr>
                       <td>{{$classificacao->id}}</td>
                       <td>{{$classificacao->descricao}}</td>
-                      <td><a class="btn btn-xs btn-warning" href="{{route('classificacoes-ocorrencia.edit', $classificacao->id)}}">Editar</a> </td>
+                      <td>
+                          <a class="btn btn-xs btn-warning" href="{{route('classificacoes-ocorrencia.edit', $classificacao->id)}}">Editar</a>
+                          <form method ="DELETE" action="{{route('classificacoes-ocorrencia.destroy', $classificacao->id)}}">
+                                <button type="submit" class="btn btn-xs btn-danger">Excluir</button>
+                          </form>
+                      </td>
                     </tr>
                     @endforeach
                 @endif
@@ -48,4 +53,8 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script src="{{asset('js/admin/classificacoes-ocorrencia.js')}}"></script> 
 @stop

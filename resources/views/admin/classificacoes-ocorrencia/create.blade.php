@@ -30,7 +30,7 @@
 
           <div class="box-footer">
               <div class="box-group pull-right">
-                <button type="button" class="btn btn-default">Cancelar</button>
+                <a href="{{route('classificacoes-ocorrencia.index')}}" class="btn btn-default">Cancelar</a>
                 <button type="submit" class="btn btn-danger">Salvar</button>
               </div>
           </div>

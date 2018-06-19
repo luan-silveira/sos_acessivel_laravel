@@ -31,7 +31,7 @@
                   <th>Nome</th>
                   <th>Ação</th>
                 </tr>
-                @foreach($atendentes as @atendente)
+                @foreach($atendentes as $atendente)
                 <tr>
                   <td>{{$atendente->id}}</td>
                   <td>{{$atendente->nome}}</td>

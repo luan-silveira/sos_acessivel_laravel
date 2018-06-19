@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin',
 
     'logout_url' => 'logout',
 
@@ -131,6 +131,16 @@ return [
         [
            'text' => 'Atendentes',
             'url'  => 'admin/atendentes',
+            'icon' => 'user', 
+        ],
+        [
+           'text' => 'Usuários',
+            'url'  => 'admin/usuarios',
+            'icon' => 'user', 
+        ],
+        [
+           'text' => 'Classificações de Ocorrências',
+            'url'  => 'admin/classificacoes-ocorrencia',
             'icon' => 'user', 
         ],
         'LABELS',

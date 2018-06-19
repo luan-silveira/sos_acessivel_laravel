@@ -77,9 +77,27 @@ class ClassificacaoOcorrenciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id) {
+         $rules = array(
+            'descricao' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('admin/classificacoes-ocorrencia/' . $id . '/edit')
+                ->withErrors($validator);
+        } else {
+            // store
+            $classificacao = ClassificacaoOcorrencia::find($id);
+            $classificacao->descricao = Input::get('descricao');
+            $classificacao->save();
+
+            // redirect
+            Session::flash('message', 'Classificação atualizada!');
+            return Redirect::to('admin/classificacao-ocorrencia');
+        }
+
     }
 
     /**
@@ -88,8 +106,9 @@ class ClassificacaoOcorrenciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id)  {
+        ClassificacaoOcorrencia::destroy($id);
+        
+        return $this->index();
     }
 }

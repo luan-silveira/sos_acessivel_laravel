@@ -15,12 +15,12 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="{{route('classificacoes-ocorrencia.store')}}" method="POST">
-            {{!! csrf_field() !!}}
+        <form role="form" action="{{route('classificacoes-ocorrencia.update', $classificacao->id)}}" method="PUT">
+            {!! csrf_field() !!}
           <div class="box-body">
             <div class="form-group">
               <label for="descricao">Descrição</label>
-              <input name="descricao" type="text" class="form-control" placeholder="Digite a descrição">
+              <input name="descricao" type="text" class="form-control" placeholder="Digite a descrição" value="{{$classificacao->descricao}}">
             </div>
             
             </div>
@@ -29,7 +29,7 @@
 
           <div class="box-footer">
               <div class="box-group pull-right">
-                <button type="button" class="btn btn-default">Cancelar</button>
+                <a href="{{route('classificacoes-ocorrencia.index')}}" class="btn btn-default">Cancelar</a>
                 <button type="submit" class="btn btn-danger">Salvar</button>
               </div>
           </div>

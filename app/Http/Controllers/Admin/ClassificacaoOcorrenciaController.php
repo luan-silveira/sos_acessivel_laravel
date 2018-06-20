@@ -14,10 +14,13 @@ class ClassificacaoOcorrenciaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        $js = asset('js/admin/classificacoes-ocorrencia/index.js');
         $classificacoes = ClassificacaoOcorrencia::all();
         $title = 'Classificações de Ocorrências';
-        $data = ['title', 'classificacoes'];
-        return view('admin.classificacoes-ocorrencia.index', compact($data));
+        return view('admin.classificacoes-ocorrencia.index')
+                ->with('title', $title)
+                ->with('js', $js)
+                ->with('classificacoes', $classificacoes);
     }
 
     /**
@@ -25,10 +28,12 @@ class ClassificacaoOcorrenciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
+        $js = asset('js/admin/classificacoes-ocorrencia/formClassificacaoOcorrencia.js');
         $title = 'Classificações de Ocorrências';
-        return view('admin.classificacoes-ocorrencia.create', compact('title'));
+        return view('admin.classificacoes-ocorrencia.create')
+                ->with('title', $title)
+                ->with('js', $js);
     }
 
     /**

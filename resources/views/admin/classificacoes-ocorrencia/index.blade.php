@@ -16,7 +16,7 @@
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                    <div class="input-group-btn">
-                    <a href="{{route('classificacoes-ocorrencia.create')}}" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a>
+                    <a href="javascript:openModalNovaClassificacaoOcorrencia()" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a>
                   </div>
                 </div>
               </div>
@@ -37,10 +37,8 @@
                       <td>{{$classificacao->id}}</td>
                       <td>{{$classificacao->descricao}}</td>
                       <td>
-                          <a class="btn btn-xs btn-warning" href="{{route('classificacoes-ocorrencia.edit', $classificacao->id)}}">Editar</a>
-                          <form method ="DELETE" action="{{route('classificacoes-ocorrencia.destroy', $classificacao->id)}}">
-                                <button type="submit" class="btn btn-xs btn-danger">Excluir</button>
-                          </form>
+                          <a class="btn btn-xs btn-warning" href="javascript:openModalEditarClassificacaoOcorrencia({{ $classificacao->id}})">Editar</a>
+                          <a class="btn btn-xs btn-danger" href="javascript:openModalExcluirClassificacaoOcorrencia({{ $classificacao->id}})">Excluir</a>
                       </td>
                     </tr>
                     @endforeach
@@ -56,5 +54,5 @@
 @stop
 
 @section('js')
-    <script src="{{asset('js/admin/classificacoes-ocorrencia.js')}}"></script> 
+    <script src="{{ $js }}"></script>
 @stop

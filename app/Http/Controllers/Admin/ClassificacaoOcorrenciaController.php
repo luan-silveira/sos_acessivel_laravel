@@ -48,7 +48,8 @@ class ClassificacaoOcorrenciaController extends Controller
         $classsificacao->descricao = $request->descricao;
         $classsificacao->save();
         
-        return $this->index();
+        Session::flash('message', 'Classificação gravada!');
+        return Redirect::to('admin/classificacao-ocorrencia');
     }
 
     /**
@@ -114,6 +115,6 @@ class ClassificacaoOcorrenciaController extends Controller
     public function destroy($id)  {
         ClassificacaoOcorrencia::destroy($id);
         
-        return $this->index();
+         return Redirect::to('admin/classificacao-ocorrencia');
     }
 }

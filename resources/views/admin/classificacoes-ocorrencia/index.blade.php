@@ -38,7 +38,7 @@
                       <td>{{$classificacao->descricao}}</td>
                       <td>
                           <a class="btn btn-xs btn-warning" href="javascript:openModalEditarClassificacaoOcorrencia({{ $classificacao->id}})">Editar</a>
-                          <a class="btn btn-xs btn-danger" href="javascript:openModalExcluirClassificacaoOcorrencia({{ $classificacao->id}})">Excluir</a>
+                          <a class="btn btn-xs btn-danger" href="javascript:excluirClassificacaoOcorrencia({{ $classificacao->id}})">Excluir</a>
                       </td>
                     </tr>
                     @endforeach

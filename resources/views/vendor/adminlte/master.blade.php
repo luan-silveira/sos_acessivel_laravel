@@ -46,6 +46,9 @@
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
+<!-- SweetAlert -->
+<script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script src="{{ asset('js/form-ajax.js') }}"></script>
 <script src="{{ asset('js/form-modal.js') }}"></script>
 

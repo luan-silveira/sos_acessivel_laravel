@@ -29,12 +29,20 @@ formAjax = new function () {
             swal({
                 title: options.tituloConfirmacao,
                 text: options.mensagemConfirmacao,
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "Sim",
-                cancelButtonText: "Cancelar",
-                customClass: "max-priority"
+                icon: "warning",
+                buttons:{
+                    cancel: {
+                        text: "Cancelar",
+                        visible : true,
+                        classname: "btn-default",
+                        closeModal: true
+                    },
+                    confirm:{
+                        text: "Sim",
+                        className: "btn-danger"
+                    }
+                },
+                className: "max-priority"
             }).then(function () {
                 e.processaRequisicao();
             });

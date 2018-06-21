@@ -24,9 +24,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+         $title = 'Criar usuário';
+         
+         return view('admin.users.create')->with('title', $title);
     }
 
     /**
@@ -35,9 +36,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+         $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'tipo' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('post/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
     }
 
     /**

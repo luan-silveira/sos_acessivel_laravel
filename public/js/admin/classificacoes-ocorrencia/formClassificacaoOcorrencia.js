@@ -1,7 +1,7 @@
 
 function salvarClassificacaoOcorrencia() {
     formAjax.send({
-        url: "classificacao-ocorrencia",
+        url: "classificacoes-ocorrencia",
         type: $("#formClassificacaoOcorrencia").attr("method"),
         data: $("#formClassificacaoOcorrencia").serialize(),
         afterSuccess: function () {

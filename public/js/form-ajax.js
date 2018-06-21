@@ -98,7 +98,7 @@ formAjax = new function () {
 
             } else {
                 swal({
-                    type: "error",
+                    icon: "error",
                     title: "Ops...",
                     html: json_response.message
                 });
@@ -108,7 +108,7 @@ formAjax = new function () {
         } else {
             console.log(response);
             swal({
-                type: "error",
+                icon: "error",
                 title: "A resposta do servidor não é um JSON válido"
             });
         }

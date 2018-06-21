@@ -1,7 +1,7 @@
 function openModalNovaClassificacaoOcorrencia() {
     formModal.criar({
         title: "Adicione uma nova classificação",        
-        url: "classificacao-ocorrencia/create",
+        url: "classificacoes-ocorrencia/create",
         onConfirm: function () {
            salvarClassificacaoOcorrencia();
         }
@@ -11,7 +11,7 @@ function openModalNovaClassificacaoOcorrencia() {
 function openModalEditarClassificacaoOcorrencia(id) {
     formModal.criar({
         title: "Editar uma classificação",
-        url: "classificacao-ocorrencia/" + id + "/edit",
+        url: "classificacoes-ocorrencia/" + id + "/edit",
         onConfirm: function () {
             salvarClassificacaoOcorrencia();
         }
@@ -22,9 +22,10 @@ function excluirClassificacaoOcorrencia(id) {
     formAjax.send({
         confirmacao: true,
         type: "delete",
-        data: {
-            id: id
-        },
+//        data: {
+//            id: id
+//        },
+         url: "classificacoes-ocorrencia/" + id ,
         afterSuccess: function () {
             location.href = location.href;
         }

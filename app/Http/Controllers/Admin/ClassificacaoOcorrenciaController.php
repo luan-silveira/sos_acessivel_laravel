@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\ClassificacaoOcorrencia;
 
+use App\Http\Ajax;
+
 class ClassificacaoOcorrenciaController extends Controller
 {
     /**
@@ -31,9 +33,10 @@ class ClassificacaoOcorrenciaController extends Controller
     public function create(){
         $js = asset('js/admin/classificacoes-ocorrencia/formClassificacaoOcorrencia.js');
         $title = 'Classificações de Ocorrências';
-        return view('admin.classificacoes-ocorrencia.create')
+        return Ajax::modalView(view('admin.classificacoes-ocorrencia.create')
                 ->with('title', $title)
-                ->with('js', $js);
+                ->with('js', $js)
+                );
     }
 
     /**
@@ -48,8 +51,10 @@ class ClassificacaoOcorrenciaController extends Controller
         $classsificacao->descricao = $request->descricao;
         $classsificacao->save();
         
-        Session::flash('message', 'Classificação gravada!');
-        return Redirect::to('admin/classificacao-ocorrencia');
+        
+        Ajax::modalView(view('admin.classificacoes-ocorrencia')
+                ->with('ajaxMessage', 'Cadastrado com sucesso!')
+                );
     }
 
     /**
@@ -69,11 +74,15 @@ class ClassificacaoOcorrenciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
+        $js = asset('js/admin/classificacoes-ocorrencia/formClassificacaoOcorrencia.js');
         $title = 'Classificações de Ocorrências';
         $classificacao = ClassificacaoOcorrencia::findOrFail($id);
-        return view('admin.classificacoes-ocorrencia.edit', compact(['title', 'classificacao']));
+        return Ajax::modalView(view('admin.classificacoes-ocorrencia.edit')
+                ->with('title', $title)
+                ->with('js', $js)
+                ->with('classificacao', $classificacao)
+                );
     }
 
     /**

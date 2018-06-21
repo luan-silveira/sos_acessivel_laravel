@@ -15,6 +15,9 @@ class CreateViaturaModelosTable extends Migration
     {
         Schema::create('viatura_modelos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nome');
+            $table->integer('id_marca');
+            $table->foreign('id_marca')->references('id')->on('viatura_marcas');
             $table->timestamps();
         });
     }

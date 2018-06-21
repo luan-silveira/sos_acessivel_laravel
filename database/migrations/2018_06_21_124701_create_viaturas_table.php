@@ -16,9 +16,9 @@ class CreateViaturasTable extends Migration
         Schema::create('viaturas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('placa');
-            $table->integer('id_marca');
             $table->integer('id_modelo');
             $table->date('data_aquisicao');
+            $table->foreign('id_modelo')->references('id')->on('viatura_modelos');
             $table->timestamps();
         });
     }

@@ -47,6 +47,16 @@ class UserController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
+
+        $usuario = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'tipo' =>  $request->tipo,
+            'password' => bcrypt($request->password)
+        ]);
+
+        $usuario->save();
+        Return Redirect::to('admin/usuarios');
     }
 
     /**

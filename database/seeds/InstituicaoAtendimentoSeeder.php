@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Model\Admin\InstituicaoAtendimento;
 class InstituicaoAtendimentoSeeder extends Seeder
 {
     /**
@@ -9,8 +9,12 @@ class InstituicaoAtendimentoSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        //
+    public function run()  {
+        InstituicaoAtendimento::create([
+            'id' => 1,
+            'nome' => 'Instituição Exemplo CBM-SC',
+            'orgao_instituicao' => 1,
+            'id_estado' => 24
+        ]);
     }
 }

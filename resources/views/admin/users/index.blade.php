@@ -39,8 +39,11 @@
                   <td>{{$usuario->email}}</td>
                   <td>{{$usuario->tipo === 1 ? 'Administrador' : 'Usuário padrão'}}</td>
                   <td>
-                    <a href="{{route('usuarios.edit', $usuario->id)}}" class="btn btn-xs btn-warning">Editar</a>
-                    <a href="{{route('usuarios.destroy', $usuario->id)}}" class="btn btn-xs btn-danger">Excluir</a>
+                    <form action="{{route('usuarios.destroy', $usuario->id)}}" method="POST">
+                       {{method_field('DELETE')}}
+                       <a href="{{route('usuarios.edit', $usuario->id)}}" class="btn btn-xs btn-warning">Editar</a>
+                      <button type="submit" class="btn btn-xs btn-danger">Excluir</button>
+                  </form>
                   </td>
                 </tr>
                 @endforeach

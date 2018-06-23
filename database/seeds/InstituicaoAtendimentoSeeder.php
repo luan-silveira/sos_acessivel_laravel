@@ -13,7 +13,7 @@ class InstituicaoAtendimentoSeeder extends Seeder
         InstituicaoAtendimento::create([
             'id' => 1,
             'nome' => 'Instituição Exemplo CBM-SC',
-            'orgao_instituicao' => 1,
+            'instituicao_orgao' => 1,
             'id_estado' => 24
         ]);
     }

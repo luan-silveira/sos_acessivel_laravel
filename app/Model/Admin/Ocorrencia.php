@@ -4,7 +4,6 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ocorrencia extends Model
-{
+class Ocorrencia extends Model {
     //
 }

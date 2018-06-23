@@ -17,10 +17,10 @@ class CreateOcorrenciasTable extends Migration
             $table->increments('id');
             $table->integer('id_paciente');
             $table->integer('id_tipo_ocorrencia');
-            $table->text('descricao');
+            $table->text('descricao')->nullable();
             $table->text('localizacao');
-            $table->double('latitude', 5, 5);
-            $table->double('longitude', 5, 5);
+            $table->double('latitude', 5, 6)->nullable();
+            $table->double('longitude', 5, .6)->nullable();
             $table->timestamp('data_ocorrencia');
             $table->integer('id_instituicao');
             $table->foreign('id_paciente')->references('id')->on('pacientes');

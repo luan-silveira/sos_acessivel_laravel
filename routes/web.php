@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
         $modelos = ViaturaModelos::where('id_marca', '=', $id_marca)->get();
         return $modelos;
     });
+    Route::resource('instituicoes-atendimento', 'InstituicaoAtendimentosController');
 });
 
 Auth::routes();

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\InstituicaoAtendimento;
+use App\Http\Controllers\Controller;
+use App\Model\Admin\InstituicaoAtendimento;
 use Illuminate\Http\Request;
 
 class InstituicaoAtendimentosController extends Controller
@@ -12,9 +13,12 @@ class InstituicaoAtendimentosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $instituicoes = InstituicaoAtendimento::paginate(15);
+        $title = 'Instituições de atendimento';
+        return view('admin.instituicoes-atendimento.index')
+                ->with('title', $title)
+                ->with('instituicoes', $instituicoes);
     }
 
     /**

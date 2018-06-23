@@ -16,9 +16,10 @@ class CreateInstituicaoAtendimentosTable extends Migration
         Schema::create('instituicao_atendimentos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 100);
-            $table->enum('orgao_instituicao', [1,2,3]);//1-Corpo de Bombeiros Mililtar/2-SAMU/3-Polícia Militar
             $table->integer('id_estado');
+            $table->integer('id_instituicao_orgao');
             $table->foreign('id_estado')->references('id')->on('estados');
+            $table->foreign('id_instituicao_orgao')->references('id')->on('instituicao_orgaos');
             $table->timestamps();
         });
     }

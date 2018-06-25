@@ -30,9 +30,9 @@
             </div>
             
             <div class="form-group has-feedback {{ $errors->has('tipo') ? 'has-error' : '' }}">
-                <select class ="form-control">
-                    <option value="0" {{ old('email')=== 0 ? 'selected' : '' }}>Usuário padrão</option>
-                    <option value="1" {{ old('email')=== 1 ? 'selected' : '' }}>Administrador</option>
+                <select class ="form-control" name="tipo" id="tipo">
+                    <option value="0" {{ old('tipo')=== 0 ? 'selected' : '' }}>Usuário padrão</option>
+                    <option value="1" {{ old('tipo')=== 1 ? 'selected' : '' }}>Administrador</option>
                 </select>
                 @if ($errors->has('tipo'))
                     <span class="help-block">
@@ -68,6 +68,19 @@
                 @if ($errors->has('password_confirmation'))
                     <span class="help-block">
                         <strong>{{ $errors->first('password_confirmation') }}</strong>
+                    </span>
+                @endif
+            </div>
+              
+            <div class="form-group has-feedback {{ $errors->has('id_instituicao') ? 'has-error' : '' }}">
+                <select class ="form-control" name="id_instituicao" id="id_instituicao">
+                @foreach($instituicoes as $instituicao)
+                    <option value="{{$instituicao->id}}" {{$instituicao->id == Auth::user()->instituicao->id ? "selected" : "" }}>{{$instituicao->nome}}</option>
+                @endforeach
+                </select>
+                @if ($errors->has('id_instituicao'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('id_instituicao') }}</strong>
                     </span>
                 @endif
             </div>

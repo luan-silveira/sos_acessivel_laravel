@@ -1,13 +1,28 @@
+<?php
+    $skin = "";
+    switch (Auth::user()->instituicao->id_instituicao_orgao){
+        case 1:
+            $skin = "red-light";
+            break;
+        case 2:
+            $skin = "black";
+            break;
+        case 3:
+            $skin = "black-light";
+            break;
+    }
+?>
+
 @extends('adminlte::master')
 
 @section('adminlte_css')
     <link rel="stylesheet"
-          href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">
+          href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . $skin . '.min.css')}} ">
     @stack('css')
     @yield('css')
 @stop
 
-@section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
+@section('body_class', 'skin-' . $skin . ' sidebar-mini ' . (config('adminlte.layout') ? [
     'boxed' => 'layout-boxed',
     'fixed' => 'fixed',
     'top-nav' => 'layout-top-nav'
@@ -58,7 +73,17 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
-                        <li>
+                        
+                        
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                              <span class="hidden-xs">{{ Auth::user()->instituicao->nome }}</span>
+                            </a>
+                            
+                          </li>
+                        
+                        
+                        <li>                            
                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                 <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
                                     <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
@@ -93,6 +118,14 @@
             <section class="sidebar">
 
                 <!-- Sidebar Menu -->
+                <div class="user-panel">
+                    
+                    <div class="pull-left info">
+                      <p>Alexander Pierce</p>
+                      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                    
+                  </div>
                 <ul class="sidebar-menu" data-widget="tree">
                     @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
                 </ul>

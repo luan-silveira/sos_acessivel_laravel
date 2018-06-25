@@ -11,12 +11,12 @@
 @section('content')
     <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Lista de instituicoes</h3>
+              <h3 class="box-title">Lista de ocorrencias</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                    <div class="input-group-btn">
-                    <a href="{{route('instituicoes-atendimento.create')}}" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a>
+                    <a href="#" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a>
                   </div>
                 </div>
               </div>
@@ -24,29 +24,28 @@
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
-               @if (count($instituicoes) === 0)
+               @if (count($ocorrencias) === 0)
                <div class=" box-comment center-block ">Não há registros cadastrados.</div>
                @else
                 <tbody><tr>
                   <th>Código</th>
-                  <th>Nome</th>
-                  <th>Órgão da instituição</th>
-                  <th>Estado</th>
+                  <th>Paciente</th>
+                  <th>Tipo de ocorrencia</th>
+                  <th>Descricao</th>
+                  <th>Data</th>
                   <th>Ações</th>
                 </tr>
-                    @foreach($instituicoes as $instituicao)
+                    @foreach($ocorrencias as $ocorrencia)
                     <tr>
-                      <td>{{$instituicao->id}}</td>
-                      <td>{{$instituicao->nome}}</td>
-                      <td>{{$instituicao->orgao->nome }}</td>
-                      <td>{{$instituicao->estado->nome." (".$instituicao->estado->sigla.")"}}</td>
+                      <td>{{$ocorrencia->id}}</td>
+                      <td>{{$ocorrencia->paciente->nome}}</td>
+                      <td>{{$ocorrencia->tipo->descricao }}</td>
+                      <td>{{$ocorrencia->descricao }}</td>
+                      <td>{{$ocorrencia->data_ocorrencia}}</td>
                       <td>
-                          <form action="{{route('instituicoes-atendimento.destroy', $instituicao->id)}}" method="POST">
-                               <a class="btn btn-xs btn-warning" href="{{route('instituicoes-atendimento.edit', $instituicao->id)}}">Editar</a>
-                              {{method_field('DELETE')}}
-                              {{ csrf_field() }}
-                              <button type="submit" class="btn btn-xs btn-danger" href="">Excluir</button>
-                          </form>
+                         <a class="btn btn-xs btn-primary" href="{{route('ocorrencias.detalhes', $ocorrencia->id)}}">
+                              <i class="fa fa-eye"></i>Detalhes
+                         </a>      
                       </td>
                     </tr>
                     @endforeach
@@ -57,7 +56,7 @@
           </div>
 <div class=""></div>
 
-<div class="footer">{{$instituicoes->links()}}</div> 
+<div class="footer">{{$ocorrencias->links()}}</div> 
 @stop
       
 

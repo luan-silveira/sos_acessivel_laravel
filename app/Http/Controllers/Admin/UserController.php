@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use App\Model\Admin\InstituicaoAtendimento;
 
 class UserController extends Controller
 {
@@ -15,7 +19,9 @@ class UserController extends Controller
      */
     public function index() {
         $title = 'Lista de usuários';
-        $usuarios = User::paginate(15);
+        $usuarios = User::where('id', '<>', Auth::user()->id)
+                ->where('id_instituicao', '=', Auth::user()->instituicao->id)
+                ->paginate(10);
         return view('admin.users.index', compact(['usuarios', 'title']));
     }
 
@@ -26,8 +32,12 @@ class UserController extends Controller
      */
     public function create() {
          $title = 'Criar usuário';
+         $instituicoes = InstituicaoAtendimento::where('id_instituicao_orgao', '=', Auth::user()->instituicao->orgao->id)
+                 ->get();
          
-         return view('admin.users.create')->with('title', $title);
+         return view('admin.users.create')
+                 ->with('title', $title)
+                 ->with('instituicoes', $instituicoes);
     }
 
     /**
@@ -39,11 +49,10 @@ class UserController extends Controller
     public function store(Request $request){
          $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'tipo' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect('post/create')
+            return redirect('admin/usuarios/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -52,6 +61,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'tipo' =>  $request->tipo,
+            'id_instituicao' =>  $request->id_instituicao,
             'password' => bcrypt($request->password)
         ]);
 

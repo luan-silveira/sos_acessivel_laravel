@@ -20,9 +20,9 @@ class CreateOcorrenciasTable extends Migration
             $table->text('descricao')->nullable();
             $table->text('localizacao');
             $table->double('latitude', 5, 6)->nullable();
-            $table->double('longitude', 5, .6)->nullable();
+            $table->double('longitude', 5, 6)->nullable();
             $table->timestamp('data_ocorrencia');
-            $table->integer('id_instituicao');
+            $table->integer('id_instituicao')->nullable;
             $table->foreign('id_paciente')->references('id')->on('pacientes');
             $table->foreign('id_tipo_ocorrencia')->references('id')->on('tipo_ocorrencias');
             $table->foreign('id_instituicao')->references('id')->on('instituicao_atendimentos');

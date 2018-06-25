@@ -37,7 +37,7 @@
                   <td>{{$usuario->id}}</td>
                   <td>{{$usuario->name}}</td>
                   <td>{{$usuario->email}}</td>
-                  <td>{{$usuario->tipo === 1 ? 'Administrador' : 'Usuário padrão'}}</td>
+                  <td>{{$usuario->tipo == 1 ? 'Administrador' : 'Usuário padrão'}}</td>
                   <td>
                     <form action="{{route('usuarios.destroy', $usuario->id)}}" method="POST">
                        {{method_field('DELETE')}}
@@ -54,7 +54,6 @@
           </div>
 <footer>
     {{$usuarios->links()}}
-    TEste
 </footer>
 
 @stop

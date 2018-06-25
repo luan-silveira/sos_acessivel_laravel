@@ -44,6 +44,7 @@ return [
     | ligth variant: blue-light, purple-light, purple-light, etc.
     |
     */
+    
 
     'skin' => 'red-light',
 

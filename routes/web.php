@@ -17,21 +17,27 @@ use App\Model\Admin\ViaturaModelos;
 
 Route::get('/', 'Admin\AdminController@index')->middleware('auth');
 
-Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
-    Route::get('/', 'AdminController@index');
-    Route::get('atendentes', 'AtendenteController@index')->name('admin.atendentes');
-    Route::resource('classificacoes-ocorrencia', 'ClassificacaoOcorrenciaController');
-    Route::resource('usuarios', 'UserController');
-    Route::resource('viaturas', 'ViaturasController');
-    Route::get('viaturas/ajax/{id_marca}', function($id_marca){
-        $modelos = ViaturaModelos::where('id_marca', '=', $id_marca)->get();
-        return $modelos;
+Route::group(['middleware' => ['auth']], function(){
+    
+    Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+        Route::get('/', 'AdminController@index');
+        Route::get('atendentes', 'AtendenteController@index')->name('admin.atendentes');
+        Route::resource('classificacoes-ocorrencia', 'ClassificacaoOcorrenciaController');
+        Route::resource('usuarios', 'UserController');
+        Route::resource('viaturas', 'ViaturasController');
+        Route::get('viaturas/ajax/{id_marca}', function($id_marca){
+            $modelos = ViaturaModelos::where('id_marca', '=', $id_marca)->get();
+            return $modelos;
+        });
+        Route::get('viaturas/{id_viatura}/ajax/{id_marca}', function($id_viatura, $id_marca){
+            $modelos = ViaturaModelos::where('id_marca', '=', $id_marca)->get();
+            return $modelos;
+        });
+        Route::resource('instituicoes-atendimento', 'InstituicaoAtendimentosController');
     });
-    Route::get('viaturas/{id_viatura}/ajax/{id_marca}', function($id_viatura, $id_marca){
-        $modelos = ViaturaModelos::where('id_marca', '=', $id_marca)->get();
-        return $modelos;
-    });
-    Route::resource('instituicoes-atendimento', 'InstituicaoAtendimentosController');
+    
+    Route::get('ocorrencias', 'OcorrenciaController@index');
+    Route::get('ocorrencias/{id_ocorrencia}', 'OcorrenciaController@detalhes')->name('ocorrencias.detalhes');
 });
 
 Auth::routes();

@@ -7,6 +7,7 @@ use App\Model\Admin\Paciente;
 use App\Model\Admin\TipoOcorrencia;
 
 class Ocorrencia extends Model {
+
     protected $table = 'ocorrencias';
     protected $guarded = ['id'];    
 
@@ -16,5 +17,9 @@ class Ocorrencia extends Model {
     
     public function tipo(){
         return $this->belongsTo(TipoOcorrencia::class, 'id_tipo_ocorrencia');
+    }
+    
+    public function dataOcorrencia(){
+        return date('d/m/Y H:i:s', strtotime($this->data_ocorrencia));
     }
 }

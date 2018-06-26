@@ -39,7 +39,7 @@
                     <tr>
                       <td>{{$ocorrencia->id}}</td>
                       <td>{{$ocorrencia->paciente->nome}}</td>
-                      <td>{{$ocorrencia->tipo->descricao }}</td>
+                      <td>{{$ocorrencia->tipo->classificacao->id.".".$ocorrencia->tipo->id." - ".$ocorrencia->tipo->descricao }}</td>
                       <td>{{$ocorrencia->descricao }}</td>
                       <td>{{$ocorrencia->data_ocorrencia}}</td>
                       <td>

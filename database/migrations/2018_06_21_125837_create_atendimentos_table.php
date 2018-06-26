@@ -21,7 +21,6 @@ class CreateAtendimentosTable extends Migration
             $table->foreign('id_ocorrencia')->references('id')->on('ocorrencias');
             $table->foreign('id_paciente')->references('id')->on('pacientes');
             $table->foreign('id_viatura')->references('id')->on('viaturas');
-            $table->enum('status', [1,2,3,4]); //1-Em aberto/2-Em atendimento/3-Socorro enviado/4-Atendida ;
             $table->timestamps();
         });
     }

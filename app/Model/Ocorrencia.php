@@ -22,4 +22,23 @@ class Ocorrencia extends Model {
     public function dataOcorrencia(){
         return date('d/m/Y H:i:s', strtotime($this->data_ocorrencia));
     }
+    
+    public function descricaoStatus(){
+        $status = "";
+        switch($this->status){
+            case(1):
+                $status = "Em atendimento";
+                break;
+            case(2):
+                $status = "Socorro enviado";
+                break;
+            case(3):
+                $status = "Atendida";
+                break;
+            default:
+                $status = "Em aberto";
+        }
+        
+        return $status;
+    }
 }

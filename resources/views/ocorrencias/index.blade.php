@@ -1,5 +1,3 @@
-{{-- resources/views/admin/dashboard.blade.php --}}
-
 @extends('adminlte::page')
 
 @section('title', $title.' - SOS Acessível')
@@ -33,6 +31,7 @@
                   <th>Tipo de ocorrencia</th>
                   <th>Descricao</th>
                   <th>Data</th>
+                  <th style="text-align: center">Status</th>
                   <th>Ações</th>
                 </tr>
                     @foreach($ocorrencias as $ocorrencia)
@@ -42,6 +41,25 @@
                       <td>{{$ocorrencia->tipo->classificacao->id.".".$ocorrencia->tipo->id." - ".$ocorrencia->tipo->descricao }}</td>
                       <td>{{$ocorrencia->descricao }}</td>
                       <td>{{$ocorrencia->dataOcorrencia()}}</td>
+                      <td style="text-align: center">
+                          @php
+                            $color = "";
+                            switch($ocorrencia->status){
+                                case(1):
+                                    $color = "warning";
+                                    break;
+                                case(2) :
+                                    $color = "info";
+                                    break;
+                                case(3) :
+                                    $color = "success";
+                                    break;
+                                 default :
+                                    $color = "red";
+                            }                            
+                          @endphp
+                          <i class="fa fa-circle text-{{$color}}" data-toggle="tooltip" title="{{$ocorrencia->descricaoStatus()}}"></i>
+                      </td>
                       <td>
                          <a class="btn btn-xs btn-primary" href="{{route('ocorrencias.detalhes', $ocorrencia->id)}}">
                               <i class="fa fa-eye"></i>Detalhes

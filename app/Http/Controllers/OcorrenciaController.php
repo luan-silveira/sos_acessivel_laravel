@@ -20,6 +20,8 @@ class OcorrenciaController extends Controller {
     }
     
     public function detalhes($id){
-        
+        $title = 'Ocorrencias';
+        return view('ocorrencias.detalhes')
+                ->with('title', $title);
     }
 }

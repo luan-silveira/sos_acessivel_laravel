@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `atendentes`
 --
 
-CREATE TABLE `atendentes` (
+CREATE TABLE IF NOT EXISTS `atendentes` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `i_instituicao_atendimento` int(11) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `atendentes` (
 -- Estrutura da tabela `atendimentos`
 --
 
-CREATE TABLE `atendimentos` (
+CREATE TABLE IF NOT EXISTS `atendimentos` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_ocorrencia` int(11) NOT NULL,
   `id_paciente` int(11) NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE `atendimentos` (
 -- Estrutura da tabela `classificacao_ocorrencias`
 --
 
-CREATE TABLE `classificacao_ocorrencias` (
+CREATE TABLE IF NOT EXISTS `classificacao_ocorrencias` (
   `id` int(10) UNSIGNED NOT NULL,
   `descricao` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -82,7 +82,7 @@ INSERT INTO `classificacao_ocorrencias` (`id`, `descricao`, `created_at`, `updat
 -- Estrutura da tabela `contato_emergencias`
 --
 
-CREATE TABLE `contato_emergencias` (
+CREATE TABLE IF NOT EXISTS `contato_emergencias` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_paciente` int(11) NOT NULL,
   `nome` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE `contato_emergencias` (
 -- Estrutura da tabela `estados`
 --
 
-CREATE TABLE `estados` (
+CREATE TABLE IF NOT EXISTS `estados` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sigla` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -144,7 +144,7 @@ INSERT INTO `estados` (`id`, `nome`, `sigla`, `created_at`, `updated_at`) VALUES
 -- Estrutura da tabela `instituicao_atendimentos`
 --
 
-CREATE TABLE `instituicao_atendimentos` (
+CREATE TABLE IF NOT EXISTS `instituicao_atendimentos` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `orgao_instituicao` enum('1','2','3') COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -167,7 +167,7 @@ INSERT INTO `instituicao_atendimentos` (`id`, `nome`, `orgao_instituicao`, `id_e
 -- Estrutura da tabela `instituicao_orgaos`
 --
 
-CREATE TABLE `instituicao_orgaos` (
+CREATE TABLE IF NOT EXISTS `instituicao_orgaos` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -187,7 +187,7 @@ INSERT INTO `instituicao_orgaos` (`id`, `nome`) VALUES
 -- Estrutura da tabela `migrations`
 --
 
-CREATE TABLE `migrations` (
+CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
@@ -219,7 +219,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Estrutura da tabela `ocorrencias`
 --
 
-CREATE TABLE `ocorrencias` (
+CREATE TABLE IF NOT EXISTS `ocorrencias` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_paciente` int(11) NOT NULL,
   `id_tipo_ocorrencia` int(11) NOT NULL,
@@ -246,7 +246,7 @@ INSERT INTO `ocorrencias` (`id`, `id_paciente`, `id_tipo_ocorrencia`, `descricao
 -- Estrutura da tabela `pacientes`
 --
 
-CREATE TABLE `pacientes` (
+CREATE TABLE IF NOT EXISTS `pacientes` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `data_nascimento` date NOT NULL,
@@ -271,7 +271,7 @@ INSERT INTO `pacientes` (`id`, `nome`, `data_nascimento`, `tipo_sanguineo`, `fat
 -- Estrutura da tabela `password_resets`
 --
 
-CREATE TABLE `password_resets` (
+CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
@@ -283,7 +283,7 @@ CREATE TABLE `password_resets` (
 -- Estrutura da tabela `tipo_ocorrencias`
 --
 
-CREATE TABLE `tipo_ocorrencias` (
+CREATE TABLE IF NOT EXISTS `tipo_ocorrencias` (
   `id` int(10) UNSIGNED NOT NULL,
   `descricao` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_classificacao_ocorrencia` int(11) NOT NULL,
@@ -341,7 +341,7 @@ INSERT INTO `tipo_ocorrencias` (`id`, `descricao`, `id_classificacao_ocorrencia`
 -- Estrutura da tabela `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tipo` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -366,7 +366,7 @@ INSERT INTO `users` (`id`, `name`, `tipo`, `email`, `password`, `id_instituicao`
 -- Estrutura da tabela `viaturas`
 --
 
-CREATE TABLE `viaturas` (
+CREATE TABLE IF NOT EXISTS `viaturas` (
   `id` int(10) UNSIGNED NOT NULL,
   `placa` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_modelo` int(11) NOT NULL,
@@ -389,7 +389,7 @@ INSERT INTO `viaturas` (`id`, `placa`, `id_modelo`, `created_at`, `updated_at`, 
 -- Estrutura da tabela `viatura_marcas`
 --
 
-CREATE TABLE `viatura_marcas` (
+CREATE TABLE IF NOT EXISTS `viatura_marcas` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -555,7 +555,7 @@ INSERT INTO `viatura_marcas` (`id`, `nome`, `created_at`, `updated_at`) VALUES
 -- Estrutura da tabela `viatura_modelos`
 --
 
-CREATE TABLE `viatura_modelos` (
+CREATE TABLE IF NOT EXISTS `viatura_modelos` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_marca` int(11) NOT NULL,

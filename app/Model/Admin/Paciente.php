@@ -12,4 +12,8 @@ class Paciente extends Model{
     public function ocorrencias(){
         return $this->hasMany(Ocorrencia::class, 'id');
     }
+
+    public function dataNascimento(){
+        return date('d/m/Y', strtotime($this->data_nascimento));
+    }
 }

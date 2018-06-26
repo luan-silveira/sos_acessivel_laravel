@@ -21,7 +21,12 @@ class OcorrenciaController extends Controller {
     
     public function detalhes($id){
         $title = 'Ocorrencias';
+        $ocorrencia = Ocorrencia::findOrFail($id);
+        $paciente = $ocorrencia->paciente;
+        
         return view('ocorrencias.detalhes')
-                ->with('title', $title);
+                ->with('title', $title)
+                ->with('ocorrencia', $ocorrencia)
+                ->with('paciente', $paciente);
     }
 }

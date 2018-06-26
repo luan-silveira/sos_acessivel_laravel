@@ -109,13 +109,11 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        '',
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'        => 'Home',
+            'url'         => '/',
+            'icon'        => 'home',
         ],
         'CONFIGURAÇÕES DA CONTA',
         [
@@ -132,7 +130,7 @@ return [
         [
            'text' => 'Atendentes',
             'url'  => 'admin/atendentes',
-            'icon' => 'user', 
+            'icon' => 'phone-square', 
         ],
         [
            'text' => 'Usuários',
@@ -140,9 +138,9 @@ return [
             'icon' => 'user', 
         ],
         [
-           'text' => 'Classificações de Ocorrências',
-            'url'  => 'admin/classificacoes-ocorrencia',
-            'icon' => 'user', 
+           'text' => 'Viaturas',
+            'url'  => 'admin/viaturas',
+            'icon' => 'ambulance', 
         ],
         'LABELS',
         [

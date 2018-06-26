@@ -118,14 +118,7 @@
             <section class="sidebar">
 
                 <!-- Sidebar Menu -->
-                <div class="user-panel">
-                    
-                    <div class="pull-left info">
-                      <p>Alexander Pierce</p>
-                      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                    </div>
-                    
-                  </div>
+                
                 <ul class="sidebar-menu" data-widget="tree">
                     @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
                 </ul>

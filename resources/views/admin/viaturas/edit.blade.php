@@ -64,6 +64,8 @@
                     </span>
                 @endif
             </div>
+              
+             <input type="hidden" name="id_instituicao" value="{{ Auth::user()->instituicao->id }}">
             
         </div>
           <!-- /.box-body -->

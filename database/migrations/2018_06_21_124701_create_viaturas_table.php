@@ -17,8 +17,10 @@ class CreateViaturasTable extends Migration
             $table->increments('id');
             $table->char('placa', 8);
             $table->integer('id_modelo');
+            $table->integer('id_instituicao');
             $table->year('ano');
             $table->foreign('id_modelo')->references('id')->on('viatura_modelos');
+            $table->foreign('id_instituicao')->references('id')->on('instituicao_atendimentos');
             $table->timestamps();
         });
     }

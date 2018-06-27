@@ -63,6 +63,7 @@ class ViaturasController extends Controller
         $viatura->placa = $request->placa;
         $viatura->ano = $request->ano;
         $viatura->id_modelo = $request->id_modelo;
+        $viatura->id_instituicao = $request->id_instituicao;
         $viatura->save();
         
         Session::flash('message', 'Viatura cadastrada!');
@@ -112,6 +113,7 @@ class ViaturasController extends Controller
         $viatura->placa = $request->placa;
         $viatura->ano = $request->ano;
         $viatura->id_modelo = $request->id_modelo;
+        $viatura->id_instituicao = $request->id_instituicao;
         $viatura->save();
         
         Session::flash('message', 'Viatura cadastrada!');

@@ -67,9 +67,8 @@
 
 <div class="box box-solid">
     <div class="box-footer">
-        <form action="" method="POST" class="pull-right">
+        <form action="{{route('ocorrencias.atendimento', $ocorrencia->id)}}" method="POST" class="pull-right">
             <a href="/ocorrencias" class="btn btn-default">Voltar</a>
-            <a href="/ocorrencias" class="btn btn-primary">Enviar mensagem ao paciente</a>
             <button type="submit" class="btn btn-danger">Enviar socorro</button>
         </form>
     </div>

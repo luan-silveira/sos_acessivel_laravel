@@ -153,8 +153,16 @@
         </div>
         <!-- /.content-wrapper -->
 
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+            <b>Versão</b> 1.0.0
+            </div>
+            <strong>Copyright ©{{date('Y')}} SOS Acessível.</strong> Todos os direitos reservados.
+        </footer>
+
     </div>
     <!-- ./wrapper -->
+
 @stop
 
 @section('adminlte_js')

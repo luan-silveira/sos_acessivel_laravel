@@ -19,6 +19,15 @@ class OcorrenciaController extends Controller {
                 ->with('title', $title)
                 ->with('ocorrencias', $ocorrencias);
     }
+
+    public function filtroStatus($status){
+        $title = 'Ocorrências';
+        $ocorrencias = Ocorrencia::where('status', '=', $status)->paginate(10);
+        
+        return view('ocorrencias.index')
+                ->with('title', $title)
+                ->with('ocorrencias', $ocorrencias);
+    }
     
     public function detalhes($id){
         $title = 'Ocorrencias';

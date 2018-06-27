@@ -128,11 +128,6 @@ return [
         ],
         'CADASTROS', 
         [
-           'text' => 'Atendentes',
-            'url'  => 'admin/atendentes',
-            'icon' => 'phone-square', 
-        ],
-        [
            'text' => 'Usuários',
             'url'  => 'admin/usuarios',
             'icon' => 'user', 
@@ -142,18 +137,30 @@ return [
             'url'  => 'admin/viaturas',
             'icon' => 'ambulance', 
         ],
-        'LABELS',
+        'ATENDIMENTO',
         [
-            'text'       => 'Important',
-            'icon_color' => 'red',
+            'text'       => 'Ocorrências',
+            'icon' => 'ambulance',
+            'submenu' => [
+                [
+                    'text'       => 'Todas',
+                    'url'  => 'ocorrencias',
+                ],
+                [
+                    'text'       => 'Em aberto',
+                    'icon_color' => 'red',
+                    'url'  => 'ocorrencias/status/0',
+                ],
+                [
+                    'text'       => 'Atendidas',
+                    'icon_color' => 'green',
+                    'url'  => 'ocorrencias/status/3',
+                ]
+            ]
         ],
         [
-            'text'       => 'Warning',
+            'text'       => 'Atendimentos',
             'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
         ],
     ],
 

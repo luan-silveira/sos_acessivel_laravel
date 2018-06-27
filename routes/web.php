@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth']], function(){
     });
     
     Route::get('ocorrencias', 'OcorrenciaController@index');
+    Route::get('ocorrencias/status/{status}', 'OcorrenciaController@filtroStatus');
     Route::get('ocorrencias/{id_ocorrencia}', 'OcorrenciaController@detalhes')->name('ocorrencias.detalhes');
     Route::post('ocorrencias/{id_ocorrencia}/atendimento', 'OcorrenciaController@atenderOcorrencia')->name('ocorrencias.atendimento');
 });

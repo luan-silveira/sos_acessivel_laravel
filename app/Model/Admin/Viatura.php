@@ -16,4 +16,8 @@ class Viatura extends Model{
     public function marca(){
         return $this->modelo()->marca();
     }
+
+    public function instituicao(){
+        return $this->belongsTo(InstituicaoAtendimento::class, 'id_instituicao');
+    }
 }

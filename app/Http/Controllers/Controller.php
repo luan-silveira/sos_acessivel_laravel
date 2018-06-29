@@ -10,4 +10,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function ajax($content, $data = array()){
+        return view('ajax', array_merge($data, ['content' => $content]));
+    }
 }

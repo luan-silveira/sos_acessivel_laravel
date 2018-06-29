@@ -7,21 +7,23 @@ if (!isset($ajaxStatus)) {
 }
 
 if (!isset($ajaxMessage)) {
-    $message = false;
+    $message = 'false';
 } else {
     $message = $ajaxMessage;
 }
 
-if (isset($js)) {
+/*if (isset($js)) {
     $content .= " " . $js;
 }
 
 if (isset($css)) {
     $content .= " " . $css;
-}
+}*/
 
-echo json_encode([
-    "status" => $status,
-    "message" => $message,
-    "content" => $content
-]);
+?>
+
+{
+    "status" => "{{$status}}",
+    "message" => {{$message}},
+    "content" => '@yield('content')'
+}

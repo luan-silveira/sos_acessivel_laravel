@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\ClassificacaoOcorrencia;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Ajax;
 
@@ -52,9 +53,8 @@ class ClassificacaoOcorrenciaController extends Controller
         $classsificacao->save();
         
         
-        Ajax::modalView(view('admin.classificacoes-ocorrencia')
-                ->with('ajaxMessage', 'Cadastrado com sucesso!')
-                );
+    return Ajax::modalView(Redirect::to('admin/classificacao-ocorrencia'));
+        //return response()->json(['ajaxMessage' => 'Cadastrado com sucesso!']);
     }
 
     /**

@@ -44,7 +44,7 @@
                           <form action="{{route('instituicoes-atendimento.destroy', $instituicao->id)}}" method="POST">
                                <a class="btn btn-xs btn-warning" href="{{route('instituicoes-atendimento.edit', $instituicao->id)}}">Editar</a>
                               {{method_field('DELETE')}}
-                              {{ csrf_field() }}
+                              {!! csrf_field() !!}
                               <button type="submit" class="btn btn-xs btn-danger" href="">Excluir</button>
                           </form>
                       </td>

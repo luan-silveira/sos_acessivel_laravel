@@ -4,11 +4,11 @@ namespace App\Http;
 
 class Ajax {
     
-    public static function modalView(string $content, $js = null){
+    public static function modalView(string $content, $ajaxStatus = null, $ajaxMessage= null){
         
         return json_encode([
-                    "status" => !isset($ajaxStatus) ? "sucesso" : $ajaxStatus ,
-                    "message" => !isset($ajaxMessage) ? false : $ajaxMessage,
+                    "status" => $ajaxStatus == null ? "sucesso" : $ajaxStatus ,
+                    "message" => $ajaxMessage == null ? false : $ajaxMessage,
                     "content" => $content,
             ]);
     }

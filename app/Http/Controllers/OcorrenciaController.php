@@ -53,7 +53,8 @@ class OcorrenciaController extends Controller {
         $ocorrencia->id_instituicao = $id_instituicao;
         $ocorrencia->save();
         
-        return Ajax::modalView(view('ocorrencias.atendimento')
+        return Ajax::modalView(
+            view('ocorrencias.atendimento')
                 ->with('js', $js)
                 ->with('title', $title)
                 ->with('ocorrencia', $ocorrencia)

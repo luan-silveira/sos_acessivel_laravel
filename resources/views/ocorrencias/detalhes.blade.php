@@ -53,7 +53,7 @@
 
 
 <div class="box box-solid">
-    <div class="box-header">
+    <div class="box-header with-border">
         <h3 class="box-title">Localização do paciente no mapa</h3>
     </div>
     <div class="box-body">
@@ -66,11 +66,9 @@
 </div>
 
 <div class="box box-solid">
-    <div class="box-footer">
-        <form action="{{route('ocorrencias.atendimento', $ocorrencia->id)}}" method="POST" class="pull-right">
-            <a href="/ocorrencias" class="btn btn-default">Voltar</a>
-            <button type="submit" class="btn btn-danger">Enviar socorro</button>
-        </form>
+    <div class="box-footer">       
+        <a href="/ocorrencias" class="btn btn-default">Voltar</a>
+        <a href="javascript:enviarSocorro({{$ocorrencia->id}})" class="btn btn-danger pull-right">Enviar socorro</a>        
     </div>
 </div>
 @stop
@@ -95,4 +93,5 @@
    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW8GdR82WyvV2dLVrpsRlMy0_EPDh8wxI&callback=initMap">
     </script>
+    <script src="{{asset('js/ocorrencias/atendimento.js')}}"></script>
 @stop

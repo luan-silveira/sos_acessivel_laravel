@@ -8,6 +8,7 @@ use App\Model\Ocorrencia;
 use App\Model\Admin\TipoOcorrencia;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Admin\Viatura;
+use App\Http\Ajax;
 
 class OcorrenciaController extends Controller {
     
@@ -41,7 +42,8 @@ class OcorrenciaController extends Controller {
     }
     
     public function atenderOcorrencia($id){
-        $id_instituicao->Auth::user()->instituicao->id;
+        $js = asset('js/ocorrencias/formOcorrenciaAtendimento.js');
+        $id_instituicao = Auth::user()->instituicao->id;
         $title = 'Atendimento ocorrência '.$id;
         $ocorrencia = Ocorrencia::findOrFail($id);
         $paciente = $ocorrencia->paciente;
@@ -51,10 +53,12 @@ class OcorrenciaController extends Controller {
         $ocorrencia->id_instituicao = $id_instituicao;
         $ocorrencia->save();
         
-        return view('ocorrencias.atendimento')
+        return Ajax::modalView(view('ocorrencias.atendimento')
+                ->with('js', $js)
                 ->with('title', $title)
                 ->with('ocorrencia', $ocorrencia)
                 ->with('paciente', $paciente)
-                ->with('viaturas', $viaturas);
+                ->with('viaturas', $viaturas)
+        );
     }
 }

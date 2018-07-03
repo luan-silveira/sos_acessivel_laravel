@@ -167,6 +167,14 @@
 
 @section('adminlte_js')
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+    <script>
+        var config = {
+        apiKey: "{{ config('services.firebase.api_key') }}",
+        authDomain: "{{ config('services.firebase.auth_domain') }}",
+        databaseURL: "{{ config('services.firebase.database_url') }}",
+        storageBucket: "{{ config('services.firebase.storage_bucket') }}",
+    };
+    </script>
     @stack('js')
     @yield('js')
 @stop

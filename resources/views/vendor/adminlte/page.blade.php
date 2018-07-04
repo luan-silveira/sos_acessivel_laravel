@@ -67,7 +67,7 @@
                         
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                              <span class="hidden-xs">{{ isset(Auth::user()->name) ? Auth::user()->name : "" }}</span>
                             </a>
                             
                           </li>

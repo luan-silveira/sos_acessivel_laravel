@@ -27,6 +27,7 @@
                @else
                 <tbody><tr>
                   <th>Código</th>
+                  <th>Instituição do tipo de ocorrência</th>
                   <th>Tipo de ocorrencia</th>
                   <th>Descricao</th>
                   <th>Data</th>
@@ -36,6 +37,7 @@
                     @foreach($ocorrencias as $ocorrencia)
                     <tr>
                       <td>{{$ocorrencia->id}}</td>
+                      <td>{{$ocorrencia->tipo->orgao->nome}}</td>
                       <td>{{$ocorrencia->tipo->classificacao->id.".".$ocorrencia->tipo->id." - ".$ocorrencia->tipo->descricao }}</td>
                       <td>{{$ocorrencia->descricao }}</td>
                       <td>{{$ocorrencia->dataOcorrencia()}}</td>

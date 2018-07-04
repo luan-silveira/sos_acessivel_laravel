@@ -14,7 +14,7 @@
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                    <div class="input-group-btn">
-                    <a href="#" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a>
+                    <a href="{{route('ocorrencias.nova')}}" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a>
                   </div>
                 </div>
               </div>
@@ -27,7 +27,6 @@
                @else
                 <tbody><tr>
                   <th>Código</th>
-                  <th>Paciente</th>
                   <th>Tipo de ocorrencia</th>
                   <th>Descricao</th>
                   <th>Data</th>
@@ -37,7 +36,6 @@
                     @foreach($ocorrencias as $ocorrencia)
                     <tr>
                       <td>{{$ocorrencia->id}}</td>
-                      <td>{{$ocorrencia->paciente->nome}}</td>
                       <td>{{$ocorrencia->tipo->classificacao->id.".".$ocorrencia->tipo->id." - ".$ocorrencia->tipo->descricao }}</td>
                       <td>{{$ocorrencia->descricao }}</td>
                       <td>{{$ocorrencia->dataOcorrencia()}}</td>

@@ -4,10 +4,8 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Admin\Ocorrencia;
-use Mpociot\Firebase\SyncsWithFirebase;
 
 class Paciente extends Model{
-    use SyncsWithFirebase;
 
     protected $table = 'pacientes';
     protected $guarded = ['id'];

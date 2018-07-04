@@ -94,7 +94,7 @@ return [
 
     'login_url' => 'login',
 
-    'register_url' => null,
+    'register_url' => 'register',
 
     /*
     |--------------------------------------------------------------------------
@@ -120,22 +120,6 @@ return [
             'text' => 'Perfil',
             'url'  => 'admin/settings',
             'icon' => 'user',
-        ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
-        'CADASTROS', 
-        [
-           'text' => 'Usuários',
-            'url'  => 'admin/usuarios',
-            'icon' => 'user', 
-        ],
-        [
-           'text' => 'Viaturas',
-            'url'  => 'admin/viaturas',
-            'icon' => 'ambulance', 
         ],
         'ATENDIMENTO',
         [

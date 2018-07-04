@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -30,15 +30,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-         $title = 'Criar usuário';
-         $instituicoes = InstituicaoAtendimento::where('id_instituicao_orgao', '=', Auth::user()->instituicao->orgao->id)
-                 ->get();
-         
-         return view('admin.users.create')
-                 ->with('title', $title)
-                 ->with('instituicoes', $instituicoes);
-    }
 
     /**
      * Store a newly created resource in storage.

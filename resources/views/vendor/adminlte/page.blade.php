@@ -1,16 +1,6 @@
 <?php
-    $skin = "";
-    switch (Auth::user()->instituicao->id_instituicao_orgao){
-        case 1:
-            $skin = "red-light";
-            break;
-        case 2:
-            $skin = "black";
-            break;
-        case 3:
-            $skin = "black-light";
-            break;
-    }
+    $skin = "black";
+   
 ?>
 
 @extends('adminlte::master')
@@ -77,7 +67,7 @@
                         
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <span class="hidden-xs">{{ Auth::user()->instituicao->nome }}</span>
+                              <span class="hidden-xs">{{ Auth::user()->name }}</span>
                             </a>
                             
                           </li>

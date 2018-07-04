@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -63,10 +63,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'id_instituicao' => 0,
         ]);
+        
+        $paciente = new \App\Model\Admin\Paciente();        
+        $paciente->id = $user->id;
+        $paciente->nome = $data['name'];
+        $paciente->data_nascimento = $data['data_nascimento'];
+        $paciente->tipo_sanguineo = $data['tipo_sanguineo'];
+        $paciente->fator_rh_sanguineo = $data['fator_rh_sanguineo'];
+        $paciente->endereco = $data['endereco'];
+        $paciente->informacoes_medicas = $data['informacoes_medicas'];
+        
+        $paciente->save();
+        
+        return $user;
     }
 }

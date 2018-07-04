@@ -13,8 +13,13 @@ use App\Http\Ajax;
 class OcorrenciaController extends Controller {
     
     public function index(){
+        $id_orgao = Auth::user()->instituicao->id_instituicao_orgao;
         $title = 'Ocorrencias';
-        $ocorrencias = Ocorrencia::paginate(10);
+        $ocorrencias = Ocorrencia::whereIn('id_tipo_ocorrencia', function($query) use ($id_orgao){
+            $query->select('id')
+                  ->from('tipo_ocorrencias')
+                  ->where('id_instituicao_orgao', '=', $id_orgao);
+        })->paginate(10);
         
         return view('ocorrencias.index')
                 ->with('title', $title)
@@ -23,7 +28,13 @@ class OcorrenciaController extends Controller {
 
     public function filtroStatus($status){
         $title = 'Ocorrências';
-        $ocorrencias = Ocorrencia::where('status', '=', $status)->paginate(10);
+        $id_orgao = Auth::user()->instituicao->id_instituicao_orgao;
+        $ocorrencias = Ocorrencia::whereIn('id_tipo_ocorrencia', function($query) use ($id_orgao){
+            $query->select('id')
+                  ->from('tipo_ocorrencias')
+                  ->where('id_instituicao_orgao', '=', $id_orgao);
+        })->where('status', '=', $status)
+          ->paginate(10);
         
         return view('ocorrencias.index')
                 ->with('title', $title)

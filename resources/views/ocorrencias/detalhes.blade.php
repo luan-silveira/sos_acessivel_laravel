@@ -87,7 +87,7 @@
           var map = new google.maps.Map(
                   document.getElementById('mapa'), {zoom: 16, center: position});
           // The marker, positioned at position
-          var marker = new google.maps.Marker({position: position, map: map});
+          var marker = new google.maps.Marker({position: position, map: map, draggable: true});
         }
     </script>
    

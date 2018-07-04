@@ -12,11 +12,7 @@
               <h3 class="box-title">Lista de ocorrencias</h3>
 
               <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                   <div class="input-group-btn">
-                    <a href="#" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a>
-                  </div>
-                </div>
+                
               </div>
             </div>
             <!-- /.box-header -->

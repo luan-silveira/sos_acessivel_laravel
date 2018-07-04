@@ -5,8 +5,11 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Admin\Paciente;
 use App\Model\Admin\TipoOcorrencia;
+use Mpociot\Firebase\SyncsWithFirebase;
 
 class Ocorrencia extends Model {
+
+    use SyncsWithFirebase;
 
     protected $table = 'ocorrencias';
     protected $guarded = ['id'];    

@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('ocorrencias/status/{status}', 'OcorrenciaController@filtroStatus');
     Route::get('ocorrencias/{id_ocorrencia}', 'OcorrenciaController@detalhes')->name('ocorrencias.detalhes');
     Route::get('ocorrencias/{id_ocorrencia}/atendimento', 'OcorrenciaController@atenderOcorrencia')->name('ocorrencias.atendimento');
-    Route::post('atendimentos', 'AtendimentoController@novoAtendimento');
+    Route::resource('atendimentos', 'AtendimentoController')->only(['index', 'show', 'store']);
 });
 
 Auth::routes();

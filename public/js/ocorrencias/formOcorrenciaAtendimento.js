@@ -1,6 +1,6 @@
 function salvarAtendimento() {
     formAjax.send({
-        url: "atendimentos",
+        url: "/atendimentos",
         type: $("#formAtendimento").attr("method"),
         data: $("#formAtendimento").serialize(),
         afterSuccess: function () {

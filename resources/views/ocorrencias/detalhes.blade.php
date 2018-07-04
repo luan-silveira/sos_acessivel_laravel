@@ -7,27 +7,6 @@
 @stop
 
 @section('content')
-  <div class="box box-solid">
-      <div class="box-header with-border">
-        <h3 class="box-title">Dados do paciente</h3>
-      </div>
-      <!-- /.box-header -->
-      <div class="box-body">
-        <dl>
-          <dt>Nome</dt>
-          <dd>{{$paciente->nome}}</dd>
-          <dt>Data de nascimento</dt>
-          <dd>{{$paciente->dataNascimento()}}</dd>
-          <dt>Tipo sanguíneo</dt>
-          <dd>{{$paciente->tipo_sanguineo .($paciente->fator_rh_sanguineo == 'P'? '+' : '-')}}</dd>
-          <dt>Endereço</dt>
-          <dd>{{$paciente->endereco}}</dd>
-          <dt>Informações médicas</dt>
-          <dd>{{$paciente->informacoes_medicas}}</dd>
-        </dl>
-      </div>
-      <!-- /.box-body -->
-  </div>
 
   <div class="box box-solid">
       <div class="box-header with-border">
@@ -54,7 +33,7 @@
 
 <div class="box box-solid">
     <div class="box-header with-border">
-        <h3 class="box-title">Localização do paciente no mapa</h3>
+        <h3 class="box-title">Localização no mapa</h3>
     </div>
     <div class="box-body">
         @if($ocorrencia->latitude == null || $ocorrencia->longitude == null)

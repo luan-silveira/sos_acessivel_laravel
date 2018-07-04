@@ -59,7 +59,7 @@ return [
     |
     */
 
-    'layout' => null,
+    'layout' => 'top-nav',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'admin',
+    'dashboard_url' => '/',
 
     'logout_url' => 'logout',
 
@@ -114,12 +114,6 @@ return [
             'text'        => 'Home',
             'url'         => '/',
             'icon'        => 'home',
-        ],
-        'CONFIGURAÇÕES DA CONTA',
-        [
-            'text' => 'Perfil',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
         ],
         'ATENDIMENTO',
         [

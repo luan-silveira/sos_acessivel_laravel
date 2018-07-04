@@ -20,7 +20,6 @@ use App\Model\Admin\TipoOcorrencia;
 Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/', 'Admin\AdminController@index')->middleware('auth');
-    Route::resource('usuarios', 'UserController');
     
     Route::get('ocorrencias', 'OcorrenciaController@index');
     Route::post('ocorrencias', 'OcorrenciaController@store')->name('ocorrencias.store');
@@ -33,6 +32,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('ocorrencias/{id_ocorrencia}', 'OcorrenciaController@detalhes')->name('ocorrencias.detalhes');
     Route::get('ocorrencias/{id_ocorrencia}/atendimento', 'OcorrenciaController@atenderOcorrencia')->name('ocorrencias.atendimento');
     Route::resource('atendimentos', 'AtendimentoController')->only(['index', 'show', 'store']);
+    Route::get('usuario', 'UserController@edit')->name('usuario.edit');
+    Route::put('usuario', 'UserController@update')->name('usuario.update');
 });
 
 Auth::routes();

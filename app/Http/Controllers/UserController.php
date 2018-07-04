@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App\Model\Admin\InstituicaoAtendimento;
+use App\Model\Admin\Paciente;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -72,15 +74,16 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
+  
+    public function edit() {
+        $user = Auth::user();
+        $paciente = Paciente::findOrFail($user->id);
+        $title = 'Usuário';
+
+        return view('admin.users.edit')
+                ->with('user', $user)
+                ->with('paciente', $paciente)
+                ->with('title', $title);
     }
 
     /**
@@ -90,8 +93,36 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
+    public function update(Request $request)  {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/usuario')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        
+        $user = Auth::user();
+        $paciente = Paciente::findOrFail($user->id);
+
+        $paciente->nome = $request->name;
+        $paciente->data_nascimento = $request->data_nascimento;
+        $paciente->tipo_sanguineo = $request->tipo_sanguineo;
+        $paciente->fator_rh_sanguineo = $request->fator_rh_sanguineo;
+        $paciente->endereco = $request->endereco;
+        $paciente->informacoes_medicas = $request->informacoes_medicas;
+        
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+        $paciente->save();
+
+        Return Redirect::to('/');
         //
     }
 

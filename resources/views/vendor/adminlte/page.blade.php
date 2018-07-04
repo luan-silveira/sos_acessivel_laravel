@@ -27,8 +27,10 @@
             <nav class="navbar navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="navbar-brand">
-                            <img src="{{asset('images/SOS_Acessivel_icon.png')}}">
+                        <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="navbar-brand site-logo user-panel">
+                            <div class="pull-left image">
+                                <img src="{{asset('images/SOS_Acessivel_icon.png')}}" class="img-circle" alt="SOS Acessível Logo">
+                            </div>
                             {!! config('adminlte.logo') !!}
                         </a>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -45,7 +47,10 @@
                     <!-- /.navbar-collapse -->
             @else
             <!-- Logo -->
-            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="logo">
+            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="logo site-logo">
+                <div class="pull-left image">
+                    <img src="{{asset('images/SOS_Acessivel_icon.png')}}" class="img-circle" alt="SOS Acessível Logo">
+                </div>
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">{!! config('adminlte.logo_mini', '<b>A</b>LT') !!}</span>
                 <!-- logo for regular state and mobile devices -->
@@ -65,8 +70,8 @@
                     <ul class="nav navbar-nav">
                         
                         
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <li>
+                            <a href="/usuario" >
                               <span class="hidden-xs">{{ Auth::user()->name }}</span>
                             </a>
                             

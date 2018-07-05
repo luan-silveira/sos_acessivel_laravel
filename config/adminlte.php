@@ -128,6 +128,11 @@ return [
         ],
         'CADASTROS', 
         [
+            'text' => 'Instituições de Atendimento',
+            'url'  => 'admin/instituicoes-atendimento',
+            'icon' => 'medkit', 
+        ],
+        [
            'text' => 'Usuários',
             'url'  => 'admin/usuarios',
             'icon' => 'user', 

@@ -17,9 +17,9 @@ use App\Model\Admin\ViaturaModelos;
 
 Route::get('/', 'Admin\AdminController@index')->middleware('auth');
 
-Route::group(['middleware' => ['auth', 'admin']], function(){
+Route::group(['middleware' => ['auth']], function(){
     
-    Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+    Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['admin']], function(){
         Route::get('/', 'AdminController@index');
         Route::get('atendentes', 'AtendenteController@index')->name('admin.atendentes');
         Route::resource('classificacoes-ocorrencia', 'ClassificacaoOcorrenciaController');

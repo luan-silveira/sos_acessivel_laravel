@@ -17,7 +17,7 @@ use App\Model\Admin\ViaturaModelos;
 
 Route::get('/', 'Admin\AdminController@index')->middleware('auth');
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth', 'admin']], function(){
     
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('/', 'AdminController@index');

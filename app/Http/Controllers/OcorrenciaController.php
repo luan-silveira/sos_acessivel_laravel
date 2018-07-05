@@ -46,7 +46,7 @@ class OcorrenciaController extends Controller {
             'status' => '0',            
         ]);
         
-        return Redirect::to('ocorerncias');
+        return Redirect::to('ocorrencias');
     }
 
     public function filtroStatus($status){

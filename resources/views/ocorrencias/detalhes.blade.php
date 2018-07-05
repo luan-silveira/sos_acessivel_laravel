@@ -42,14 +42,12 @@
         <div id="mapa" style="height: 360px"></div>
         @endif
     </div>
-</div>
 
-<div class="box box-solid">
-    <div class="box-footer">       
-        <a href="/ocorrencias" class="btn btn-default">Voltar</a>
-        <a href="javascript:enviarSocorro({{$ocorrencia->id}})" class="btn btn-danger pull-right">Enviar socorro</a>        
+    <div class="box-footer">    
+        <a href="/ocorrencias" class="btn btn-default pull-right">Voltar</a>       
     </div>
 </div>
+
 @stop
       
 

@@ -1,11 +1,11 @@
 function salvarAtendimento() {
+    var url = "/atendimentos"
     formAjax.send({
-        url: "/atendimentos",
+        url: url,
         type: $("#formAtendimento").attr("method"),
         data: $("#formAtendimento").serialize(),
         afterSuccess: function () {
-            //Atualiza a página
-            location.href = location.href;
+            location.href = url;
         }
     });
 }

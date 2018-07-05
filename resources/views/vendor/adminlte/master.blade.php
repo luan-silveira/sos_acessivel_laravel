@@ -51,6 +51,7 @@
 
 <script src="{{ asset('js/form-ajax.js') }}"></script>
 <script src="{{ asset('js/form-modal.js') }}"></script>
+<script src="{{ asset('js/notify.js') }}"></script>
 
 @if(config('adminlte.plugins.select2'))
     <!-- Select2 -->

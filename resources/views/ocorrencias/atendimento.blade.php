@@ -6,7 +6,7 @@
         <option value="{{ $viatura->id }}">{{$viatura->id." - ".$viatura->modelo->marca->nome." ".$viatura->modelo->nome." (".$viatura->placa.")"}}</option>
     @endforeach
     </select>
-
+    <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">  
     <input type="hidden" name="id_ocorrencia" value="{{ $ocorrencia->id }}">            
     <input type="hidden" name="id_paciente" value="{{ $paciente->id }}">
     <input type="hidden" name="id_instituicao" value="{{ Auth::user()->instituicao->id }}">

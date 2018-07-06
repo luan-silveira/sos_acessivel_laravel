@@ -27,7 +27,7 @@
                   <th>Tipo de ocorrencia</th>
                   <th>Descricao</th>
                   <th>Data</th>
-                  <th style="text-align: center">Status</th>
+                  <th>Status</th>
                   <th>Ações</th>
                 </tr>
                     @foreach($ocorrencias as $ocorrencia)
@@ -37,7 +37,7 @@
                       <td>{{$ocorrencia->tipo->classificacao->id.".".$ocorrencia->tipo->id." - ".$ocorrencia->tipo->descricao }}</td>
                       <td>{{$ocorrencia->descricao }}</td>
                       <td>{{$ocorrencia->dataOcorrencia()}}</td>
-                      <td style="text-align: center">
+                      <td>
                           @php
                             $color = "";
                             switch($ocorrencia->status){
@@ -54,11 +54,13 @@
                                     $color = "red";
                             }                            
                           @endphp
-                          <i class="fa fa-circle text-{{$color}}" data-toggle="tooltip" title="{{$ocorrencia->descricaoStatus()}}"></i>
+                          <i class="fa fa-circle text-{{$color}}"></i>
+                          <span>{{$ocorrencia->descricaoStatus()}}</span>
                       </td>
                       <td>
                          <a class="btn btn-xs btn-primary" href="{{route('ocorrencias.detalhes', $ocorrencia->id)}}">
-                              <i class="fa fa-eye"></i>Detalhes
+                              <i class="fa fa-eye"></i>
+                              <span>Detalhes</span>
                          </a>      
                       </td>
                     </tr>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Admin\Paciente;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App\Model\Admin\InstituicaoAtendimento;
@@ -63,7 +65,7 @@ class UserController extends Controller
             'email' => $request->email,
             'tipo' =>  $request->tipo,
             'id_instituicao' =>  $request->id_instituicao,
-            'password' => bcrypt($request->password)
+            'password' => Hash::make($request->password)
         ]);
 
         $usuario->save();
@@ -87,9 +89,18 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
-    {
-        //
+    public function edit() {
+        $user = Auth::user();
+        $paciente = Paciente::findOrFail($user->id);
+        $instituicoes = InstituicaoAtendimento::where('id_instituicao_orgao', '=', Auth::user()->instituicao->orgao->id)
+                 ->get();
+        $title = 'Usuário';
+
+        return view('admin.users.edit')
+                ->with('user', $user)
+                ->with('paciente', $paciente)
+                ->with('title', $title)
+                ->with('instituicoes', $instituicoes);
     }
 
     /**
@@ -99,19 +110,28 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
+    public function update(Request $request)  {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required'
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
+        if ($validator->fails()) {
+            return redirect('/usuario')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        
+        $user = Auth::user();        
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->tipo =  $request->tipo;
+        $user->id_instituicao =  $request->id_instituicao;
+
+        $user->save();
+
+        Return Redirect::to('/');
         //
     }
 }

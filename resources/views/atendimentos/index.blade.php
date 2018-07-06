@@ -14,7 +14,6 @@
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                    <div class="input-group-btn">
-                    <a href="#" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a>
                   </div>
                 </div>
               </div>
@@ -28,40 +27,33 @@
                 <tbody><tr>
                   <th>Código</th>
                   <th>Paciente</th>
-                  <th>Tipo de atendimento</th>
-                  <th>Descricao</th>
+                  <th>Atendido por</th>
                   <th>Data</th>
-                  <th style="text-align: center">Status</th>
+                  <th>Status</th>
                   <th>Ações</th>
                 </tr>
                     @foreach($atendimentos as $atendimento)
                     <tr>
                       <td>{{$atendimento->id}}</td>
                       <td>{{$atendimento->paciente->nome}}</td>
-                      <td>{{$atendimento->tipo->classificacao->id.".".$atendimento->tipo->id." - ".$atendimento->tipo->descricao }}</td>
-                      <td>{{$atendimento->descricao }}</td>
-                      <td>{{$atendimento->dataatendimento()}}</td>
-                      <td style="text-align: center">
+                      <td>{{$atendimento->user->name }}</td>
+                      <td>{{$atendimento->dataAtendimento()}}</td>
+                      <td>
                           @php
                             $color = "";
                             switch($atendimento->status){
                                 case(1):
-                                    $color = "warning";
-                                    break;
-                                case(2) :
-                                    $color = "info";
-                                    break;
-                                case(3) :
-                                    $color = "success";
+                                    $color = "green";
                                     break;
                                  default :
                                     $color = "red";
                             }                            
                           @endphp
-                          <i class="fa fa-circle text-{{$color}}" data-toggle="tooltip" title="{{$atendimento->descricaoStatus()}}"></i>
+                          <i class="fa fa-circle text-{{$color}}"></i>
+                          <span>{{$atendimento->descricaoStatus()}}</span>
                       </td>
                       <td>
-                         <a class="btn btn-xs btn-primary" href="{{route('atendimentos.detalhes', $atendimento->id)}}">
+                         <a class="btn btn-xs btn-primary" href="{{route('ocorrencias.detalhes', $atendimento->ocorrencia->id)}}">
                               <i class="fa fa-eye"></i>Detalhes
                          </a>      
                       </td>

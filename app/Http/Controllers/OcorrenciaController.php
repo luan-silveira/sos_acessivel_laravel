@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Ocorrencia;
-use App\Model\Admin\TipoOcorrencia;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Admin\Viatura;
 use App\Http\Ajax;
+use App\Model\Atendimento;
+use Illuminate\Http\Request;
 
 class OcorrenciaController extends Controller {
     
@@ -27,18 +27,22 @@ class OcorrenciaController extends Controller {
     }
 
     public function filtroStatus($status){
-        $title = 'Ocorrências';
-        $id_orgao = Auth::user()->instituicao->id_instituicao_orgao;
-        $ocorrencias = Ocorrencia::whereIn('id_tipo_ocorrencia', function($query) use ($id_orgao){
-            $query->select('id')
-                  ->from('tipo_ocorrencias')
-                  ->where('id_instituicao_orgao', '=', $id_orgao);
-        })->where('status', '=', $status)
-          ->paginate(10);
-        
-        return view('ocorrencias.index')
-                ->with('title', $title)
-                ->with('ocorrencias', $ocorrencias);
+        if(!in_array($status, ['0', '1', '2', '3'])){
+            abort(404);
+        } else {
+            $title = 'Ocorrências';
+            $id_orgao = Auth::user()->instituicao->id_instituicao_orgao;
+            $ocorrencias = Ocorrencia::whereIn('id_tipo_ocorrencia', function($query) use ($id_orgao){
+                $query->select('id')
+                      ->from('tipo_ocorrencias')
+                      ->where('id_instituicao_orgao', '=', $id_orgao);
+            })->where('status', '=', $status)
+              ->paginate(10);
+
+            return view('ocorrencias.index')
+                    ->with('title', $title)
+                    ->with('ocorrencias', $ocorrencias);
+        }
     }
     
     public function detalhes($id){
@@ -72,5 +76,18 @@ class OcorrenciaController extends Controller {
                 ->with('paciente', $paciente)
                 ->with('viaturas', $viaturas)
         );
+    }
+    
+    public function finalizarOcorrencia(Request $request){
+        $ocorrencia = Ocorrencia::findOrFail($request->id);
+        $atendimento = Atendimento::where('id_ocorrencia', '=', $request->id)->first();
+        
+        $ocorrencia->status = '3';
+        $atendimento->status = 1;
+        
+        $ocorrencia->save();
+        $atendimento->save();
+        
+        return Ajax::modalView("", null, "Atendimento finalizado para esta ocorrência!");
     }
 }

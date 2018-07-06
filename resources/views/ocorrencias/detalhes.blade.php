@@ -68,7 +68,15 @@
 <div class="box box-solid">
     <div class="box-footer">       
         <a href="/ocorrencias" class="btn btn-default">Voltar</a>
-        <a href="javascript:enviarSocorro({{$ocorrencia->id}})" class="btn btn-danger pull-right">Enviar socorro</a>        
+        <input  type="hidden" name='_token' id='_token' value='{{csrf_token()}}'>
+        @switch($ocorrencia->status)
+            @case('0')
+            @case('1')
+                <a href="javascript:enviarSocorro({{$ocorrencia->id}})" class="btn btn-danger pull-right">Enviar socorro</a> 
+            @break    
+            @case('2')
+                <a href="javascript:finalizarAtendimento({{$ocorrencia->id}})" class="btn btn-success pull-right">Finalizar atendimento</a>
+        @endswitch
     </div>
 </div>
 @stop

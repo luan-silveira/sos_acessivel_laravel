@@ -115,58 +115,7 @@ return [
             'url'         => '/',
             'icon'        => 'home',
         ],
-        'CONFIGURAÇÕES DA CONTA',
-        [
-            'text' => 'Perfil',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
-        'CADASTROS', 
-        [
-            'text' => 'Instituições de Atendimento',
-            'url'  => 'admin/instituicoes-atendimento',
-            'icon' => 'medkit', 
-        ],
-        [
-           'text' => 'Usuários',
-            'url'  => 'admin/usuarios',
-            'icon' => 'user', 
-        ],
-        [
-           'text' => 'Viaturas',
-            'url'  => 'admin/viaturas',
-            'icon' => 'ambulance', 
-        ],
-        'ATENDIMENTO',
-        [
-            'text'       => 'Ocorrências',
-            'icon' => 'ambulance',
-            'submenu' => [
-                [
-                    'text'       => 'Todas',
-                    'url'  => 'ocorrencias',
-                ],
-                [
-                    'text'       => 'Em aberto',
-                    'icon_color' => 'red',
-                    'url'  => 'ocorrencias/status/0',
-                ],
-                [
-                    'text'       => 'Atendidas',
-                    'icon_color' => 'green',
-                    'url'  => 'ocorrencias/status/3',
-                ]
-            ]
-        ],
-        [
-            'text'       => 'Atendimentos',
-            'icon_color' => 'yellow',
-        ],
+        
     ],
 
     /*

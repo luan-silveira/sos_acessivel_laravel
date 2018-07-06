@@ -137,8 +137,9 @@ return [
             ]
         ],
         [
-            'text'       => 'Atendimentos',
-            'icon_color' => 'yellow',
+            'text'       => 'SOS !!! (Nova ocorrência)',
+            'icon_color' => 'red',
+            'url'  => 'ocorrencias/nova',
         ],
     ],
 

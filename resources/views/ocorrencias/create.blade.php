@@ -70,8 +70,8 @@
             </div>
             
              <input type="hidden" name="id_paciente" value="{{Auth::user()->id}}">
-             <input type="hidden" name="latitude" id ="latitude" value="0">
-             <input type="hidden" name="longitude" id ="longitude" value="0">
+             <input type="hidden" name="latitude" id ="latitude" value="-28.7419455">
+             <input type="hidden" name="longitude" id ="longitude" value="-49.5005373">
         </div>
           <!-- /.box-body -->
 

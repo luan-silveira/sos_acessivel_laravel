@@ -44,7 +44,7 @@
     </div>
 
     <div class="box-footer">    
-        <a href="/ocorrencias" class="btn btn-default pull-right">Voltar</a>       
+        <a href="{{route('ocorrencias.index')}}" class="btn btn-default pull-right">Voltar</a>       
     </div>
 </div>
 

@@ -21,7 +21,7 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/', 'Admin\AdminController@index')->middleware('auth');
     
-    Route::get('ocorrencias', 'OcorrenciaController@index');
+    Route::get('ocorrencias', 'OcorrenciaController@index')->name('ocorrencias.index');
     Route::post('ocorrencias', 'OcorrenciaController@store')->name('ocorrencias.store');
     Route::get('ocorrencias/nova', 'OcorrenciaController@create')->name('ocorrencias.nova');
     Route::get('ocorrencias/ajax/{id_classificacao_ocorrencia}', function($id){
@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('atendimentos', 'AtendimentoController')->only(['index', 'show', 'store']);
     Route::get('usuario', 'UserController@edit')->name('usuario.edit');
     Route::put('usuario', 'UserController@update')->name('usuario.update');
+    Route::resource('atendimentos', 'AtendimentoController')->only(['index', 'store']);
+    Route::get('atendimentos/status/{status}', 'AtendimentoController@filtroStatus');
 });
 
 Auth::routes();

@@ -77,7 +77,7 @@ class OcorrenciaController extends Controller {
         $paciente = $ocorrencia->paciente;
         $viaturas = Viatura::where('id_instituicao', '=', $id_instituicao)->get();
         
-        $ocorrencia->status = 1;
+        $ocorrencia->status = '1';
         $ocorrencia->id_instituicao = $id_instituicao;
         $ocorrencia->save();
         

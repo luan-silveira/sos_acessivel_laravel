@@ -16,10 +16,10 @@ $('#id_classificacao').on('change', function(e){
 
 function initMap() {
 
-    var position = {lat: 0, lng: 0 };
+    var position = {lat: -28.7419455, lng: -49.5005373 };
     // The map, centered at position
     var map = new google.maps.Map(
-            document.getElementById('mapa'), {zoom: 16, center: position});
+            document.getElementById('mapa'), {zoom: 14, center: position});
     // The marker, positioned at position
     var marker = new google.maps.Marker({position: position, map: map, draggable: true});
     var infoWindow = new google.maps.InfoWindow;

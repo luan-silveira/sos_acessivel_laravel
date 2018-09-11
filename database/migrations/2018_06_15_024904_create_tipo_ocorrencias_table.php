@@ -16,8 +16,8 @@ class CreateTipoOcorrenciasTable extends Migration
         Schema::create('tipo_ocorrencias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao', 100);
-            $table->integer('id_classificacao_ocorrencia');
-            $table->integer('id_instituicao_orgao');
+            $table->unsignedInteger('id_classificacao_ocorrencia');
+            $table->unsignedInteger('id_instituicao_orgao');
             $table->foreign('id_classificacao_ocorrencia')->references('id')->on('classificacao_ocorrencias');
             $table->foreign('id_instituicao_orgao')->references('id')->on('instituicao_orgaos');
             $table->timestamps();

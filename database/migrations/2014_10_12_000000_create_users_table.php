@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->enum('tipo', [0,1]);
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('id_instituicao');
+            $table->unsignedInteger('id_instituicao');
             $table->foreign('id_instituicao')->references('id')->on('instituicao_atendimentos');
             $table->rememberToken();
             $table->timestamps();

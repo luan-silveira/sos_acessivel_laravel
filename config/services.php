@@ -34,5 +34,13 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    
+    'firebase' => [
+        'api_key' => 'AIzaSyA-kUH8-Zbfa-BZYVdCflhCY8ryenwNAGM',
+        'auth_domain' => 'sosacessivel.firebaseapp.com',
+        'database_url' => 'https://sosacessivel.firebaseio.com',
+        'secret' => 'sUwPQ3ficU2NNWqUSg3EB3Hm2V3nGqUiKvkrTCVU',
+        'storage_bucket' => 'sosacessivel.appspot.com',
+    ]
 
 ];

@@ -22,10 +22,10 @@ class CreateOcorrenciasTable extends Migration
             $table->decimal('latitude', 13, 6)->nullable();
             $table->decimal('longitude', 13, 6)->nullable();
             $table->timestamp('data_ocorrencia');
-            $table->integer('id_instituicao')->nullable;
+            $table->integer('id_user')->nullable();
             $table->foreign('id_paciente')->references('id')->on('pacientes');
             $table->foreign('id_tipo_ocorrencia')->references('id')->on('tipo_ocorrencias');
-            $table->foreign('id_instituicao')->references('id')->on('instituicao_atendimentos');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->enum('status', [0,1,2,3]); //0-Em aberto/1-Em atendimento/2-Socorro enviado/3-Atendida ;
             $table->text('observacoes');
             $table->timestamps();

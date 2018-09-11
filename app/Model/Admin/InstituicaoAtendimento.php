@@ -21,8 +21,4 @@ class InstituicaoAtendimento extends Model{
         return $this->hasMany(\App\User::class, 'id');
     }
 
-    public function viaturas(){
-        return $this->hasMany(Viatura::class, 'id');
-    }
-
 }

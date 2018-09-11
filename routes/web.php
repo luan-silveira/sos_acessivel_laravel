@@ -1,6 +1,5 @@
 <?php
 
-use App\Model\Admin\ViaturaModelos;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,15 +23,14 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('atendentes', 'AtendenteController@index')->name('admin.atendentes');
         Route::resource('classificacoes-ocorrencia', 'ClassificacaoOcorrenciaController');
         Route::resource('usuarios', 'UserController');
-        Route::resource('viaturas', 'ViaturasController');
-        Route::get('viaturas/ajax/{id_marca}', function($id_marca){
-            $modelos = ViaturaModelos::where('id_marca', '=', $id_marca)->get();
-            return $modelos;
-        });
-        Route::get('viaturas/{id_viatura}/ajax/{id_marca}', function($id_viatura, $id_marca){
-            $modelos = ViaturaModelos::where('id_marca', '=', $id_marca)->get();
-            return $modelos;
-        });
+//        Route::get('viaturas/ajax/{id_marca}', function($id_marca){
+//            $modelos = ViaturaModelos::where('id_marca', '=', $id_marca)->get();
+//            return $modelos;
+//        });
+//        Route::get('viaturas/{id_viatura}/ajax/{id_marca}', function($id_viatura, $id_marca){
+//            $modelos = ViaturaModelos::where('id_marca', '=', $id_marca)->get();
+//            return $modelos;
+//        });
         Route::resource('instituicoes-atendimento', 'InstituicaoAtendimentosController');
     });
     

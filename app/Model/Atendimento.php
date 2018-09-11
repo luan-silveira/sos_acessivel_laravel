@@ -4,12 +4,11 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Admin\Paciente;
-use App\Model\Admin\Viatura;
 
 class Atendimento extends Model{
 
     protected $table = 'atendimentos';
-    protected $fillable = ['id_ocorrencia', 'id_instituicao', 'id_paciente', 'id_viatura', 'id_user'];
+    protected $fillable = ['id_ocorrencia', 'id_instituicao', 'id_paciente', 'id_user'];
     
     public function paciente(){
         return $this->belongsTo(Paciente::class, 'id_paciente');
@@ -18,11 +17,7 @@ class Atendimento extends Model{
     public function ocorrencia(){
         return $this->belongsTo(Ocorrencia::class, 'id_ocorrencia');
     }
-    
-    public function viatura(){
-        return $this->belongsTo(Viatura::class, 'id_viatura');
-    }
-    
+       
     public function user(){
         return $this->belongsTo(\App\User::class, 'id_user');
     }

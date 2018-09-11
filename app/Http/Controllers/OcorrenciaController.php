@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Model\Ocorrencia;
 use Illuminate\Support\Facades\Auth;
-use App\Model\Admin\Viatura;
 use App\Http\Ajax;
 use App\Model\Atendimento;
 use Illuminate\Http\Request;
@@ -62,7 +61,6 @@ class OcorrenciaController extends Controller {
         $title = 'Atendimento ocorrência '.$id;
         $ocorrencia = Ocorrencia::findOrFail($id);
         $paciente = $ocorrencia->paciente;
-        $viaturas = Viatura::where('id_instituicao', '=', $id_instituicao)->get();
         
         $ocorrencia->status = '1';
         $ocorrencia->id_instituicao = $id_instituicao;
@@ -74,7 +72,6 @@ class OcorrenciaController extends Controller {
                 ->with('title', $title)
                 ->with('ocorrencia', $ocorrencia)
                 ->with('paciente', $paciente)
-                ->with('viaturas', $viaturas)
         );
     }
     

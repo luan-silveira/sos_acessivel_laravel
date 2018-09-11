@@ -36,12 +36,7 @@ class AppServiceProvider extends ServiceProvider {
                        'text' => 'Usuários',
                         'url'  => 'admin/usuarios',
                         'icon' => 'user', 
-                    ],
-                    [
-                       'text' => 'Viaturas',
-                        'url'  => 'admin/viaturas',
-                        'icon' => 'ambulance', 
-                ]);
+                    ]);
             }
             $event->menu->add('ATENDIMENTO');
             $event->menu->add([

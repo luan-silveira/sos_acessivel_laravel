@@ -1,4 +1,6 @@
 <?php
+    use Illuminate\Support\Facades\Auth;
+
     $skin = "";
     switch (Auth::user()->instituicao->id_instituicao_orgao){
         case 1:

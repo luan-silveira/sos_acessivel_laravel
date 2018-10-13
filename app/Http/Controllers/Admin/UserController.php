@@ -26,6 +26,18 @@ class UserController extends Controller
                 ->paginate(10);
         return view('admin.users.index', compact(['usuarios', 'title']));
     }
+    
+    public function user() {
+        $title = 'Perfil';
+        $user = Auth::user();
+        $instituicoes = InstituicaoAtendimento::where('id_instituicao_orgao', '=', $user->instituicao->orgao->id)
+                 ->get();
+        return view('admin.users.edit')
+                ->with('title', $title)
+                ->with('user', $user)
+                ->with('alterarInstituicao', false)
+                ->with('instituicoes', $instituicoes);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -89,10 +101,10 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit() {
-        $user = Auth::user();
+    public function edit($id) {
+        $user = User::findOrFail($id);
         $paciente = Paciente::findOrFail($user->id);
-        $instituicoes = InstituicaoAtendimento::where('id_instituicao_orgao', '=', Auth::user()->instituicao->orgao->id)
+        $instituicoes = InstituicaoAtendimento::where('id_instituicao_orgao', '=', $user->instituicao->orgao->id)
                  ->get();
         $title = 'Usuário';
 
@@ -100,7 +112,8 @@ class UserController extends Controller
                 ->with('user', $user)
                 ->with('paciente', $paciente)
                 ->with('title', $title)
-                ->with('instituicoes', $instituicoes);
+                ->with('instituicoes', $instituicoes)
+                ->with('alterarInstituicao', true);
     }
 
     /**

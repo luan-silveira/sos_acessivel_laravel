@@ -38,12 +38,8 @@ class AppServiceProvider extends ServiceProvider {
                         'icon' => 'user', 
                     ]);
             }
-            $event->menu->add('ATENDIMENTO');
+            $event->menu->add('OCORRÊNCIAS');
             $event->menu->add([
-                        'text'       => 'Ocorrências',
-                        'icon' => 'ambulance',
-                        'submenu' => [
-                            [
                                 'text'       => 'Todas',
                                 'url'  => 'ocorrencias',
                             ],
@@ -54,31 +50,15 @@ class AppServiceProvider extends ServiceProvider {
                             ],
                             [
                                 'text'       => 'Atendidas',
+                                'icon_color' => 'blue',
+                                'url'  => 'ocorrencias/status/1',
+                            ],
+                            [
+                                'text'       => 'Finalizadas',
                                 'icon_color' => 'green',
-                                'url'  => 'ocorrencias/status/3',
+                                'url'  => 'ocorrencias/status/2'
                             ]
-                        ]
-                    ],
-                    [
-                        'text'       => 'Atendimentos',
-                        'icon' => 'ambulance',
-                        'submenu' => [
-                            [
-                                'text'       => 'Todos',
-                                'url'  => 'atendimentos',
-                            ],
-                            [
-                                'text'       => 'Pendentes',
-                                'icon_color' => 'red',
-                                'url'  => 'atendimentos/status/0',
-                            ],
-                            [
-                                'text'       => 'Finalizados',
-                                'icon_color' => 'green',
-                                'url'  => 'atendimentos/status/1',
-                            ],
-                        ]
-                    ]);
+                    );
             
         });
         

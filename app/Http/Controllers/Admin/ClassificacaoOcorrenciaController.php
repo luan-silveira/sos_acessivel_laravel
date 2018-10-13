@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\ClassificacaoOcorrencia;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+
+use App\Http\FirebaseSync;
 
 use App\Http\Ajax;
 
@@ -19,11 +24,15 @@ class ClassificacaoOcorrenciaController extends Controller
     public function index() {
         $js = asset('js/admin/classificacoes-ocorrencia/index.js');
         $classificacoes = ClassificacaoOcorrencia::all();
+        //$db = FirebaseSync::getDatabase();
+        //$classificacoes = $db->getReference("classificacao_ocorrencias")->getSnapshot()->getValue();
         $title = 'Classificações de Ocorrências';
         return view('admin.classificacoes-ocorrencia.index')
                 ->with('title', $title)
                 ->with('js', $js)
                 ->with('classificacoes', $classificacoes);
+        
+        
     }
 
     /**
@@ -125,5 +134,24 @@ class ClassificacaoOcorrenciaController extends Controller
         ClassificacaoOcorrencia::destroy($id);
         
          return Redirect::to('admin/classificacao-ocorrencia');
+    }
+    
+    public function storeFirebase(Request $request, $id) {
+        $classsificacao = ClassificacaoOcorrencia::find($id);
+        if($classsificacao == null) {
+            $classsificacao = new ClassificacaoOcorrencia();
+            $classsificacao->id = $id;
+            $classsificacao->descricao = $request->descricao;
+            $classsificacao->save();
+            //ClassificacaoOcorrencia::create($request);
+        } else {
+            if($request->descricao != $classsificacao->descricao) {
+                $classsificacao->descricao = $request->descricao;
+                $classsificacao->save();
+            }
+        }
+        
+    return Ajax::modalView("");
+        //return response()->json(['ajaxMessage' => 'Cadastrado com sucesso!']);
     }
 }

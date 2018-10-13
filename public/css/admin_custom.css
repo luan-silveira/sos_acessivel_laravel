@@ -1,0 +1,18 @@
+.login-page, .register-page {
+    background-image: url("../images/emergencia.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.login-box, .register-box {
+    background: #ffffff;
+}
+
+.login-logo, .register-logo {
+    margin-bottom: 0px !important;
+}
+
+.login-box-body, .register-box-body {
+    padding-top: 5px;
+}

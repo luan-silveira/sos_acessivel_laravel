@@ -32,7 +32,7 @@
                 </tr>
                     @foreach($ocorrencias as $ocorrencia)
                     <tr>
-                      <td>{{$ocorrencia->id}}</td>
+                      <td id="{{$ocorrencia->id}}">{{$ocorrencia->id}}</td>
                       <td>{{$ocorrencia->paciente->nome}}</td>
                       <td>{{$ocorrencia->tipo->classificacao->id.".".$ocorrencia->tipo->id." - ".$ocorrencia->tipo->descricao }}</td>
                       <td>{{$ocorrencia->descricao }}</td>
@@ -45,9 +45,6 @@
                                     $color = "warning";
                                     break;
                                 case(2) :
-                                    $color = "info";
-                                    break;
-                                case(3) :
                                     $color = "success";
                                     break;
                                  default :
@@ -81,5 +78,5 @@
 @stop
 
 @section('js')
-   
+    
 @stop

@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>SOS</b> Acessível',
+    'logo' => '<img src="images/SOS_Acessivel_icon.jpg" class="img-circle" style="width: 38px; height: 38px;"> <b>SOS</b> Acessível',
 
-    'logo_mini' => '<b>S</b>A',
+    'logo_mini' => '<img src="images/SOS_Acessivel_icon.jpg" class="img-circle" style="width: 38px; height: 38px;">',
 
     /*
     |--------------------------------------------------------------------------

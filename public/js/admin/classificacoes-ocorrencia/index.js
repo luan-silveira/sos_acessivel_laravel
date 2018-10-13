@@ -21,11 +21,11 @@ function openModalEditarClassificacaoOcorrencia(id) {
 function excluirClassificacaoOcorrencia(id) {
     formAjax.send({
         confirmacao: true,
-        type: "delete",
-//        data: {
-//            id: id
-//        },
-         url: "classificacoes-ocorrencia/" + id ,
+        url: "classificacoes-ocorrencia/" + id ,
+        data: {
+            _method: "delete",
+            _token: $("input[name=_token]").val()
+        },
         afterSuccess: function () {
             location.href = location.href;
         }

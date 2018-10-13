@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Ajax;
 use App\Model\Atendimento;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class OcorrenciaController extends Controller {
     
@@ -55,36 +56,73 @@ class OcorrenciaController extends Controller {
                 ->with('paciente', $paciente);
     }
     
-    public function atenderOcorrencia($id){
+    public function mensagemAtendente(Request $request, $id){
         $js = asset('js/ocorrencias/formOcorrenciaAtendimento.js');
-        $id_instituicao = Auth::user()->instituicao->id;
         $title = 'Atendimento ocorrência '.$id;
         $ocorrencia = Ocorrencia::findOrFail($id);
-        $paciente = $ocorrencia->paciente;
-        
-        $ocorrencia->status = '1';
-        $ocorrencia->id_instituicao = $id_instituicao;
-        $ocorrencia->save();
         
         return Ajax::modalView(
             view('ocorrencias.atendimento')
                 ->with('js', $js)
                 ->with('title', $title)
                 ->with('ocorrencia', $ocorrencia)
-                ->with('paciente', $paciente)
         );
+    }
+    
+    public function atenderOcorrencia(Request $request){
+        $ocorrencia = Ocorrencia::findOrFail($request->id_ocorrencia);
+        $ocorrencia->status = '1';
+        $ocorrencia->mensagem_atendente = $request->mensagem_atendente;
+        $ocorrencia->id_user = Auth::user()->id;
+        $ocorrencia->save();
+        
+        return Ajax::modalView("", null, "Ocorrência atendida");
     }
     
     public function finalizarOcorrencia(Request $request){
         $ocorrencia = Ocorrencia::findOrFail($request->id);
-        $atendimento = Atendimento::where('id_ocorrencia', '=', $request->id)->first();
         
-        $ocorrencia->status = '3';
-        $atendimento->status = 1;
+        $ocorrencia->status = '2';
         
         $ocorrencia->save();
-        $atendimento->save();
         
         return Ajax::modalView("", null, "Atendimento finalizado para esta ocorrência!");
     }
+    
+    /**
+     * Sincroniza os dados com o Firebase.
+     * 
+     * @param Request $request
+     * @param string $key
+     * @return Response
+     */    
+    public function syncFirebase(Request $request, $key){
+        
+        $dataOcorrencia = date_create_from_format('d/m/Y H:i:s', $request->data_ocorrencia)->format('Y-m-d H:i:s');
+        $request->merge(['data_ocorrencia' => $dataOcorrencia]);
+        $campos = $request->except('_token');
+        $query = Ocorrencia::where("_key", '=', $key);
+        $ocorrencia = $query->first();
+        
+        if($ocorrencia == null){
+            Ocorrencia::create($campos);
+        } else if ($this->isUpdate($ocorrencia, $request)){
+            $query->update($campos);
+        }
+        
+        return Ajax::modalView("");
+    }
+    
+    
+    private function isUpdate(Ocorrencia $ocorrencia, $request){
+        $isUpdate = false;
+        $atributos = $ocorrencia->getFillable();
+        foreach ($atributos as $atributo) {
+            $isUpdate = ($isUpdate || ($ocorrencia->{$atributo} != $request->{$atributo}));
+            if($isUpdate) { break; }
+        }
+        
+        return $isUpdate;
+    }
+    
 }

@@ -37,12 +37,18 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('ocorrencias', 'OcorrenciaController@index');
     Route::get('ocorrencias/status/{status}', 'OcorrenciaController@filtroStatus');
     Route::get('ocorrencias/{id_ocorrencia}', 'OcorrenciaController@detalhes')->name('ocorrencias.detalhes');
-    Route::get('ocorrencias/{id_ocorrencia}/atendimento', 'OcorrenciaController@atenderOcorrencia')->name('ocorrencias.atendimento');
+    Route::get('ocorrencias/{id_ocorrencia}/atendimento', 'OcorrenciaController@mensagemAtendente')->name('ocorrencias.atendimento');
+    Route::post('ocorrencias/{id_ocorrencia}/atendimento', 'OcorrenciaController@atenderOcorrencia')->name('ocorrencias.salvar-atendimento');
     Route::post('ocorrencias/{id_ocorrencia}/finalizar', 'OcorrenciaController@finalizarOcorrencia')->name('ocorrencias.finalizar');
     Route::resource('atendimentos', 'AtendimentoController')->only(['index', 'store']);
     Route::get('atendimentos/status/{status}', 'AtendimentoController@filtroStatus');
-    Route::get('usuario', 'Admin\UserController@edit')->name('usuario.edit');
+    Route::get('usuario', 'Admin\UserController@user')->name('usuario.perfil');
+    Route::get('usuario/{id}/edit', 'UserController@edit')->name('usuario.edit');
     Route::post('usuario', 'Admin\UserController@update')->name('usuario.update');
+    
+    //Firebase
+    Route::post('ocorrencia-paciente-firebase/{id}', 'Admin\PacienteController@syncFirebase');
+    Route::post('ocorrencia-firebase/{key}', 'OcorrenciaController@syncFirebase');
 });
 
 Auth::routes();

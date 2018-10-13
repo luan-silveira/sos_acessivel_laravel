@@ -30,6 +30,7 @@
                 @endif
             </div>
             
+              @if($alterarInstituicao)
             <div class="form-group has-feedback {{ $errors->has('tipo') ? 'has-error' : '' }}">
                 <select class ="form-control" name="tipo" id="tipo">
                     <option value="0" {{ $user->tipo === 0 ? 'selected' : '' }}>Usuário padrão</option>
@@ -41,6 +42,7 @@
                     </span>
                 @endif
             </div>
+            @endif  
             
             <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                 <input type="email" name="email" class="form-control" value="{{ $user->email }}"
@@ -72,7 +74,8 @@
                     </span>
                 @endif
             </div>
-              
+            
+             @if ($alterarInstituicao)
             <div class="form-group has-feedback {{ $errors->has('id_instituicao') ? 'has-error' : '' }}">
                 <select class ="form-control" name="id_instituicao" id="id_instituicao">
                 @foreach($instituicoes as $instituicao)
@@ -85,6 +88,7 @@
                     </span>
                 @endif
             </div>
+            @endif 
 
         </div>
           <!-- /.box-body -->

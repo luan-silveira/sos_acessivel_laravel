@@ -7,7 +7,8 @@ use App\Model\Admin\Ocorrencia;
 
 class Paciente extends Model{
     protected $table = 'pacientes';
-    protected $guarded = ['id'];    
+    protected $fillable = ['nome', 'data_nascimento', 'tipo_sanguineo',
+        'fator_rh_sanguineo', 'endereco', 'informacoes_medicas'];
 
     public function ocorrencias(){
         return $this->hasMany(Ocorrencia::class, 'id');

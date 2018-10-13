@@ -5,15 +5,13 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Admin\Paciente;
 use App\Model\Admin\TipoOcorrencia;
-use Mpociot\Firebase\SyncsWithFirebase;
 
 class Ocorrencia extends Model {
-    
-    use SyncsWithFirebase;
 
     protected $table = 'ocorrencias';
-    protected $guarded = ['id'];    
-
+    protected $guarded = ['id']; 
+    protected $fillable = ['_key', 'id_tipo_ocorrencia', 'id_paciente', 'descricao', 'localizacao', 'latitude', 'longitude',
+        'status', 'data_ocorrencia'];
     public function paciente(){
         return $this->belongsTo(Paciente::class, 'id_paciente');
     }
@@ -30,13 +28,10 @@ class Ocorrencia extends Model {
         $status = "";
         switch($this->status){
             case(1):
-                $status = "Em atendimento";
+                $status = "Atendida";
                 break;
             case(2):
-                $status = "Socorro enviado";
-                break;
-            case(3):
-                $status = "Atendida";
+                $status = "Finalizada";
                 break;
             default:
                 $status = "Em aberto";

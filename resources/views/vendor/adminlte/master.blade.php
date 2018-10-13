@@ -49,9 +49,22 @@
 <!-- SweetAlert -->
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+<!-- Diversos -->
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 <script src="{{ asset('js/form-ajax.js') }}"></script>
 <script src="{{ asset('js/form-modal.js') }}"></script>
 <script src="{{ asset('js/notify.js') }}"></script>
+<script>
+    var config = {
+        apiKey: "{{ config('services.firebase.api_key') }}",
+        authDomain: "{{ config('services.firebase.auth_domain') }}",
+        databaseURL: "{{ config('services.firebase.database_url') }}",
+        storageBucket: "{{ config('services.firebase.storage_bucket') }}",
+    };
+    firebase.initializeApp(config);
+    
+    var database = firebase.database();
+</script>
 
 @if(config('adminlte.plugins.select2'))
     <!-- Select2 -->

@@ -66,15 +66,19 @@
 </div>
 
 <div class="box box-solid">
-    <div class="box-footer">       
+    <div class="box-footer">
+        <form id="formAtendimento">
+            <input type="hidden" name='_token' id='_token' value='{{csrf_token()}}'>
+            <input type="hidden" name="key" id="key" value="{{$ocorrencia->_key}}">
+            <input type="hidden" name =""
+        </form>
         <a href="/ocorrencias" class="btn btn-default">Voltar</a>
-        <input  type="hidden" name='_token' id='_token' value='{{csrf_token()}}'>
+        
         @switch($ocorrencia->status)
             @case('0')
-            @case('1')
                 <a href="javascript:enviarSocorro({{$ocorrencia->id}})" class="btn btn-danger pull-right">Enviar socorro</a> 
             @break    
-            @case('2')
+            @case('1')
                 <a href="javascript:finalizarAtendimento({{$ocorrencia->id}})" class="btn btn-success pull-right">Finalizar atendimento</a>
         @endswitch
     </div>

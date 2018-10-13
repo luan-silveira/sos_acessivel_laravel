@@ -23,15 +23,17 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
+              <table class="table table-hover" id="tableClassificacoes">
                @if (count($classificacoes) === 0)
                <div class=" box-comment ">Não há registros cadastrados.</div>
                @else
-                <tbody><tr>
-                  <th>Código</th>
-                  <th>Descrição</th>
-                  <th>Ação</th>
-                </tr>
+                <tbody>
+                    <tr>
+                        <th>Código</th>
+                        <th>Descrição</th>
+                        <th>Ação</th>
+                      </tr>
+                    {!! csrf_field() !!}
                     @foreach($classificacoes as $classificacao)
                     <tr>
                       <td>{{$classificacao->id}}</td>
@@ -42,8 +44,9 @@
                       </td>
                     </tr>
                     @endforeach
-                @endif
-              </tbody></table>
+                  @endif
+                </tbody>
+              </table>
             </div>
             <!-- /.box-body -->
           </div>

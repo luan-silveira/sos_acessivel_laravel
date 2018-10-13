@@ -42,7 +42,7 @@
                             $color = "";
                             switch($ocorrencia->status){
                                 case(1):
-                                    $color = "warning";
+                                    $color = "blue";
                                     break;
                                 case(2) :
                                     $color = "success";

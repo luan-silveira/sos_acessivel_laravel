@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<img src="images/SOS_Acessivel_icon.jpg" class="img-circle" style="width: 38px; height: 38px;"> <b>SOS</b> Acessível',
+    'logo' => '<img src="/images/SOS_Acessivel_icon.jpg" class="img-circle" style="width: 38px; height: 38px;"> <b>SOS</b> Acessível',
 
-    'logo_mini' => '<img src="images/SOS_Acessivel_icon.jpg" class="img-circle" style="width: 38px; height: 38px;">',
+    'logo_mini' => '<img src="/images/SOS_Acessivel_icon.jpg" class="img-circle" style="width: 38px; height: 38px;">',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'admin',
+    'dashboard_url' => '/',
 
     'logout_url' => 'logout',
 

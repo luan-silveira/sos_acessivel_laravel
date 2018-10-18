@@ -16,3 +16,8 @@
 .login-box-body, .register-box-body {
     padding-top: 5px;
 }
+
+.logo-lg {
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 25px;    
+}

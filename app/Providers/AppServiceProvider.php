@@ -29,12 +29,12 @@ class AppServiceProvider extends ServiceProvider {
                 $event->menu->add('CADASTROS');
                 $event->menu->add([
                         'text' => 'Instituições de Atendimento',
-                        'url'  => 'admin/instituicoes-atendimento',
+                        'url'  => 'instituicoes-atendimento',
                         'icon' => 'medkit', 
                     ],
                     [
                        'text' => 'Usuários',
-                        'url'  => 'admin/usuarios',
+                        'url'  => 'usuarios',
                         'icon' => 'user', 
                     ]);
             }

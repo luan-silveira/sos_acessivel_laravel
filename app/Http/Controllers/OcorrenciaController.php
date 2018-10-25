@@ -96,21 +96,21 @@ class OcorrenciaController extends Controller {
      * @param string $key
      * @return Response
      */    
-    public function syncFirebase(Request $request, $key){
+    public function syncFirebase(Request $request){
         
         $dataOcorrencia = date_create_from_format('d/m/Y H:i:s', $request->data_ocorrencia)->format('Y-m-d H:i:s');
         $request->merge(['data_ocorrencia' => $dataOcorrencia]);
-        $campos = $request->except('_token');
-        $query = Ocorrencia::where("_key", '=', $key);
-        $ocorrencia = $query->first();
+        $ocorrencia = Ocorrencia::where("_key",  $request->_key)->first();
+        $campos = $request->all();
         
-        if($ocorrencia == null){
-            Ocorrencia::create($campos);
+        if(!$ocorrencia){
+            $ocorrencia = Ocorrencia::create($campos);
         } else if ($this->isUpdate($ocorrencia, $request)){
-            $query->update($campos);
+            $ocorrencia->fill($campos);
+            $ocorrencia->save();
         }
         
-        return Ajax::modalView("");
+        return response()->json($ocorrencia);
     }
     
     

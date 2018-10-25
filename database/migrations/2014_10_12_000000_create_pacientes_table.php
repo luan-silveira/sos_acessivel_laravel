@@ -21,6 +21,7 @@ class CreatePacientesTable extends Migration
             $table->enum('fator_rh_sanguineo', ['P', 'N']);
             $table->text('endereco');
             $table->text('informacoes_medicas')->nullable(); 
+            $table->string('_key');
             $table->timestamps();
         });
     }

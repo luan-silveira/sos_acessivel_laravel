@@ -67,7 +67,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/usuarios/create')
+            return redirect('usuarios/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -81,7 +81,7 @@ class UserController extends Controller
         ]);
 
         $usuario->save();
-        Return Redirect::to('admin/usuarios');
+        Return Redirect::to('usuarios');
     }
 
     /**

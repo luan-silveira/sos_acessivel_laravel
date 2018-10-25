@@ -7,49 +7,60 @@
 @stop
 
 @section('content')
-  <div class="box box-solid">
-      <div class="box-header with-border">
-        <h3 class="box-title">Dados do paciente</h3>
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Dados do paciente</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <dl>
+              <dt>Nome</dt>
+              <dd>{{$paciente->nome}}</dd>
+              <dt>Data de nascimento</dt>
+              <dd>{{$paciente->dataNascimento()}}</dd>
+              <dt>Tipo sanguíneo</dt>
+              <dd>{{$paciente->tipo_sanguineo .($paciente->fator_rh_sanguineo == 'P'? '+' : '-')}}</dd>
+              <dt>Endereço</dt>
+              <dd>{{$paciente->endereco}}</dd>
+              <dt>Informações médicas</dt>
+              <dd>{{$paciente->informacoes_medicas}}</dd>
+            </dl>
+             <button type="button" class="btn btn-{{$paciente->isBloqueado() ? "success" : "danger"}}" data-key="{{$paciente->_key}}" data-bloqueado="{{$paciente->isBloqueado() ? 1 : 0}}" id="btnBloquearPaciente">
+                 {{$paciente->isBloqueado() ? "Desbloquear" : "Bloquear"}}
+             </button>
+          </div>
+          <!-- /.box-body -->
       </div>
-      <!-- /.box-header -->
-      <div class="box-body">
-        <dl>
-          <dt>Nome</dt>
-          <dd>{{$paciente->nome}}</dd>
-          <dt>Data de nascimento</dt>
-          <dd>{{$paciente->dataNascimento()}}</dd>
-          <dt>Tipo sanguíneo</dt>
-          <dd>{{$paciente->tipo_sanguineo .($paciente->fator_rh_sanguineo == 'P'? '+' : '-')}}</dd>
-          <dt>Endereço</dt>
-          <dd>{{$paciente->endereco}}</dd>
-          <dt>Informações médicas</dt>
-          <dd>{{$paciente->informacoes_medicas}}</dd>
-        </dl>
-      </div>
-      <!-- /.box-body -->
-  </div>
-
-  <div class="box box-solid">
-      <div class="box-header with-border">
-        <h3 class="box-title">Dados da ocorrência</h3>
-      </div>
-      <!-- /.box-header -->
-      <div class="box-body">
-        <dl>
-          <dt>Classificação</dt>
-          <dd>{{$ocorrencia->tipo->classificacao->id.' - '.$ocorrencia->tipo->classificacao->descricao}}</dd>
-          <dt>Tipo</dt>
-          <dd>{{$ocorrencia->tipo->id.' - '.$ocorrencia->tipo->descricao}}</dd>
-          <dt>Descrição da ocorrência</dt>
-          <dd>{{$ocorrencia->descricao}}</dd>
-          <dt>Descrição da localidade</dt>
-          <dd>{{$ocorrencia->localizacao}}</dd>
-          <dt>Data da solicitação</dt>
-          <dd>{{$ocorrencia->dataOcorrencia()}}</dd>
-        </dl>
-      </div>
-      <!-- /.box-body -->
-  </div>
+    </div>
+    
+    <div class="col-md-6">  
+        <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Dados da ocorrência</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <dl>
+                 <dt>Status</dt>
+                 <dd>{{$ocorrencia->descricaoStatus()}}</dd>
+                <dt>Classificação</dt>
+                <dd>{{$ocorrencia->tipo->classificacao->id.' - '.$ocorrencia->tipo->classificacao->descricao}}</dd>
+                <dt>Tipo</dt>
+                <dd>{{$ocorrencia->tipo->id.' - '.$ocorrencia->tipo->descricao}}</dd>
+                <dt>Descrição da ocorrência</dt>
+                <dd>{{$ocorrencia->descricao}}</dd>
+                <dt>Descrição da localidade</dt>
+                <dd>{{$ocorrencia->localizacao}}</dd>
+                <dt>Data da solicitação</dt>
+                <dd>{{$ocorrencia->dataOcorrencia()}}</dd>
+              </dl>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
 
 
 <div class="box box-solid">
@@ -74,6 +85,7 @@
         </form>
         <a href="/ocorrencias" class="btn btn-default">Voltar</a>
         
+        @if(!$paciente->isBloqueado())
         @switch($ocorrencia->status)
             @case('0')
                 <a href="javascript:enviarSocorro({{$ocorrencia->id}})" class="btn btn-danger pull-right">Enviar socorro</a> 
@@ -81,6 +93,7 @@
             @case('1')
                 <a href="javascript:finalizarAtendimento({{$ocorrencia->id}})" class="btn btn-success pull-right">Finalizar atendimento</a>
         @endswitch
+        @endif
     </div>
 </div>
 @stop

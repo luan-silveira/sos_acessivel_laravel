@@ -17,11 +17,15 @@ class InstituicaoAtendimentosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        $orgaos= InstituicaoOrgao::orderBy('nome')->get();
+        $estados = Estado::orderBy('nome')->get();
         $instituicoes = InstituicaoAtendimento::paginate(15);
         $title = 'Instituições de atendimento';
         return view('admin.instituicoes-atendimento.index')
                 ->with('title', $title)
-                ->with('instituicoes', $instituicoes);
+                ->with('instituicoes', $instituicoes)
+                ->with('orgaos', $orgaos)
+                ->with('estados', $estados);
     }
 
     /**
@@ -47,12 +51,10 @@ class InstituicaoAtendimentosController extends Controller
      */
     public function store(Request $request){
         $instituicao = new InstituicaoAtendimento();
-        $instituicao->nome = $request->nome;
-        $instituicao->id_instituicao_orgao = $request->id_instituicao_orgao;
-        $instituicao->id_estado = $request->id_estado;
+        $instituicao->fill($request->all());
         $instituicao->save();
 
-        return Redirect::to('admin/instituicoes-atendimento');
+        return response()->json(['message' => 'Instituição cadastrada com sucesso.']);
     }
 
     /**
@@ -74,14 +76,8 @@ class InstituicaoAtendimentosController extends Controller
      */
     public function edit($id) {
         $instituicao = InstituicaoAtendimento::findOrFail($id);
-        $orgaos= InstituicaoOrgao::orderBy('nome')->get();
-        $estados = Estado::orderBy('nome')->get();
-        $title = 'Instituições de atendimento';
-        return view('admin.instituicoes-atendimento.edit')
-                ->with('title', $title)
-                ->with('instituicao', $instituicao)
-                ->with('orgaos', $orgaos)
-                ->with('estados', $estados);
+        
+        return response()->json($instituicao);        
     }
 
     /**
@@ -98,7 +94,7 @@ class InstituicaoAtendimentosController extends Controller
         $instituicao->id_estado = $request->id_estado;
         $instituicao->save();
 
-        return Redirect::to('admin/instituicoes-atendimento');
+        return Redirect::to('instituicoes-atendimento');
     }
 
     /**
@@ -109,6 +105,6 @@ class InstituicaoAtendimentosController extends Controller
      */
     public function destroy($id){
         InstituicaoAtendimento::destroy($id);
-        return Redirect::to('admin/instituicoes-atendimento');
+        return response()->json(['message' => 'Instituição excluída com sucesso!']);
     }
 }

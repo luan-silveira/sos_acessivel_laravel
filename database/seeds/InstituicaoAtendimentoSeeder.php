@@ -16,5 +16,19 @@ class InstituicaoAtendimentoSeeder extends Seeder
             'id_instituicao_orgao' => 1,
             'id_estado' => 24
         ]);
+        
+        InstituicaoAtendimento::create([
+            'id' => 2,
+            'nome' => 'Instituição Exemplo PM-SC',
+            'id_instituicao_orgao' => 2,
+            'id_estado' => 24
+        ]);
+        
+        InstituicaoAtendimento::create([
+            'id' => 3,
+            'nome' => 'Instituição Exemplo SAMU-SC',
+            'id_instituicao_orgao' => 3,
+            'id_estado' => 24
+        ]);
     }
 }

@@ -1,23 +1,9 @@
-<?php
-    use Illuminate\Support\Facades\Auth;
-
-    $skin = "";
-    switch (Auth::user()->instituicao->id_instituicao_orgao){
-        case 1:
-            $skin = "red-light";
-            break;
-        case 2:
-            $skin = "black";
-            break;
-        case 3:
-            $skin = "black-light";
-            break;
-    }
-?>
-
 @extends('adminlte::master')
 
 @section('adminlte_css')
+@php
+    $skin = \App\Http\Controllers\HomeController::getSkin();
+@endphp
     <link rel="stylesheet"
           href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . $skin . '.min.css')}} ">
     @stack('css')
@@ -61,7 +47,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">{!! config('adminlte.logo_mini', '<b>A</b>LT') !!}</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</span>
+                <span class="logo-lg logo-span">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</span>
             </a>
 
             <!-- Header Navbar -->
@@ -168,6 +154,7 @@
 @stop
 
 @section('adminlte_js')
+    <script src="{{ asset('js/utils.js') }}"></script>
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
     <script src ="{{asset('js/ocorrencias/firebaseOcorrencia.js')}}"></script>
     @stack('js')

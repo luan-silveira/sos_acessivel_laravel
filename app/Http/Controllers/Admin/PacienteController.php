@@ -12,26 +12,36 @@ class PacienteController extends Controller{
      * Sincroniza os dados do paciente do Firebase no banco de dados local MySQL.
      *
      * @param  Request  $request
-     * @param  int $id
      * @return Response
      */
     
-    public function syncFirebase(Request $request, $id){
+    public function syncFirebase(Request $request){
         
         $dataNascimento = date_create_from_format('d/m/Y', $request->data_nascimento)->format('Y-m-d');
         $request->merge(['data_nascimento' => $dataNascimento]);
-        $campos = $request->except('_token');
-        $query = Paciente::where('id', $id);
-        $paciente = $query->first();
+        $paciente = Paciente::where('_key', $request->_key)->first();
+        $campos = $request->all();
         
-        if($paciente == null){
-            Paciente::create($campos);
+        if(!$paciente){
+            $paciente = Paciente::create($campos);
         } else if($this->isUpdate($paciente, $request)){
-            $query->update($campos);
+            $paciente->fill($campos);
+            $paciente->save();
         }
         
-        return \App\Http\Ajax::modalView("");
+        return response()->json($paciente);
         
+    }
+    
+    public function bloquearPaciente(Request $request){
+        $paciente = Paciente::where('_key', $request->_key)->first();
+        $paciente->is_bloqueado = !$paciente->is_bloqueado;
+        
+        $paciente->save();
+        
+        $message = "O paciente foi ". ($paciente->is_bloqueado ? "" : "des") ."bloqueado";
+        
+        return response()->json(["message" => $message, "bloqueado" => $paciente->is_bloqueado]);
     }
     
     private function isUpdate(Paciente $paciente, $request){

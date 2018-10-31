@@ -60,6 +60,8 @@ Route::group(['middleware' => ['auth']], function() {
     //Firebase
     Route::post('/ocorrencia-paciente-firebase', 'Admin\PacienteController@syncFirebase');
     Route::post('/ocorrencia-firebase', 'OcorrenciaController@syncFirebase');
+    
+    Route::get('/get-total-ocorrencias', 'HomeController@getTotalOcorrencias');
 });
 
 Auth::routes();

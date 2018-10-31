@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Model\Ocorrencia;
+use Carbon\Carbon;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {    
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -22,14 +23,42 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         return view('home');
     }
-    
-    public static function getSkin(){
+
+    public function getTotalOcorrencias(Request $request) {
+        
+        $today = Carbon::today();
+        $query = Ocorrencia::query();
+        switch($request->periodo){
+            case 0:
+                $query->whereDate('data_ocorrencia', $today);
+                break;
+            case 1:
+                $query->whereBetween('data_ocorrencia',
+                        [$today->startOfWeek()->toDateTimeString(), $today->endOfWeek()->toDateTimeString()]);                
+                break;
+            case 2:
+                $query->whereMonth('data_ocorrencia', $today->month);
+                break;
+            case 3:
+                $query->whereYear('data_ocorrencia', $today->year);
+                break;
+        }
+        
+     
+        
+        $totalPendentes = (clone $query)->where('status', '0')->count();
+        $totalAtendidas = (clone $query)->where('status', '1')->count();
+        $totalFinalizadas = (clone $query)->where('status', '2')->count();
+
+        return response()->json(compact('totalPendentes', 'totalAtendidas', 'totalFinalizadas'));
+    }
+
+    public static function getSkin() {
         $skin = "";
-        switch (Auth::user()->instituicao->id_instituicao_orgao){
+        switch (Auth::user()->instituicao->id_instituicao_orgao) {
             case 1:
                 $skin = "red-light";
                 break;
@@ -40,7 +69,8 @@ class HomeController extends Controller
                 $skin = "black-light";
                 break;
         }
-        
+
         return $skin;
     }
+
 }

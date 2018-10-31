@@ -11,7 +11,7 @@ class Ocorrencia extends Model {
     protected $table = 'ocorrencias';
     protected $guarded = ['id']; 
     protected $fillable = ['_key', 'id_tipo_ocorrencia', 'id_paciente', 'descricao', 'localizacao', 'latitude', 'longitude',
-        'status', 'data_ocorrencia'];
+        'status', 'data_ocorrencia', 'mensagem_atendente'];
     public function paciente(){
         return $this->belongsTo(Paciente::class, 'id_paciente');
     }

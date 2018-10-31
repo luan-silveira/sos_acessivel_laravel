@@ -53,19 +53,21 @@ function updateOcorrenciaFirebase(key, data){
 }
 
 function finalizarAtendimento(id_ocorrencia) {
-    formAjax.send({
-        confirmacao: true,
-        url: "/ocorrencias/" + id_ocorrencia + "/finalizar",
-        type: "POST",
-        data: {
-            _token: $('#_token').val(),
-            id: id_ocorrencia
-        },
-        afterSuccess: function () {
-            updateOcorrenciaFirebase($('#key').val(), {status: 2});
-            location.href = "/ocorrencias#" + id_ocorrencia;
-        }
-    });
+    var url = "/ocorrencias/" + id_ocorrencia + "/finalizar";
+    var data = {id: id_ocorrencia};
+    
+    dialogBox.confirm("Finalizar atendimento", "Deseja realmente finalizar o atendimento?", 
+        function(confirm){
+            if(confirm){
+                $.post(url, data, function(ret){
+                    $.notify(ret.message, "success");
+                    updateOcorrenciaFirebase($('#key').val(), {status: 2});
+                    setTimeout(function(){
+                        location.href = "/ocorrencias/" + id_ocorrencia;
+                    }, 800);
+                });
+            }
+        });
 }
 
 function salvarAtendimento() {

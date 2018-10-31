@@ -19,7 +19,7 @@ class OcorrenciaController extends Controller {
             $query->select('id')
                   ->from('tipo_ocorrencias')
                   ->where('id_instituicao_orgao', '=', $id_orgao);
-        })->paginate(10);
+        })->paginate(15);
         
         return view('ocorrencias.index')
                 ->with('title', $title)
@@ -80,13 +80,11 @@ class OcorrenciaController extends Controller {
     }
     
     public function finalizarOcorrencia(Request $request){
-        $ocorrencia = Ocorrencia::findOrFail($request->id);
-        
-        $ocorrencia->status = '2';
-        
+        $ocorrencia = Ocorrencia::findOrFail($request->id);        
+        $ocorrencia->status = '2';        
         $ocorrencia->save();
         
-        return Ajax::modalView("", null, "Atendimento finalizado para esta ocorrência!");
+        return response()->json(['message' => "Atendimento finalizado para esta ocorrência!"]);
     }
     
     /**

@@ -122,8 +122,9 @@
        </div>
 </form>
 
-<div class="footer">{{$instituicoes->links()}}</div> 
 </div>
+
+<div class="footer">{{$instituicoes->links()}}</div> 
 @stop
       
 

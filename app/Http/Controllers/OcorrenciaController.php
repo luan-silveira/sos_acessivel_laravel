@@ -56,27 +56,16 @@ class OcorrenciaController extends Controller {
                 ->with('paciente', $paciente);
     }
     
-    public function mensagemAtendente(Request $request, $id){
-        $js = asset('js/ocorrencias/formOcorrenciaAtendimento.js');
-        $title = 'Atendimento ocorrência '.$id;
-        $ocorrencia = Ocorrencia::findOrFail($id);
-        
-        return Ajax::modalView(
-            view('ocorrencias.atendimento')
-                ->with('js', $js)
-                ->with('title', $title)
-                ->with('ocorrencia', $ocorrencia)
-        );
-    }
-    
     public function atenderOcorrencia(Request $request){
         $ocorrencia = Ocorrencia::findOrFail($request->id_ocorrencia);
         $ocorrencia->status = '1';
+        $ocorrencia->data_atendimento = \Carbon\Carbon::now();
         $ocorrencia->mensagem_atendente = $request->mensagem_atendente;
         $ocorrencia->id_user = Auth::user()->id;
         $ocorrencia->save();
         
-        return Ajax::modalView("", null, "Ocorrência atendida");
+        return response()->json(['message' => 'Ocorrência atendida!', 
+            'data_atendimento' => $ocorrencia->data_atendimento->format('d/m/Y H:i:s')]);
     }
     
     public function finalizarOcorrencia(Request $request){

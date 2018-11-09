@@ -29,8 +29,14 @@ class HomeController extends Controller {
 
     public function getTotalOcorrencias(Request $request) {
         
+        $id_orgao = auth()->user()->instituicao->id_instituicao_orgao;
         $today = Carbon::today();
-        $query = Ocorrencia::query();
+        $query = Ocorrencia::whereIn('id_tipo_ocorrencia', function($q) use ($id_orgao){
+            $q->select('id')
+                  ->from('tipo_ocorrencias')
+                  ->where('id_instituicao_orgao', $id_orgao);
+        });
+
         switch($request->periodo){
             case 0:
                 $query->whereDate('data_ocorrencia', $today);
@@ -46,8 +52,6 @@ class HomeController extends Controller {
                 $query->whereYear('data_ocorrencia', $today->year);
                 break;
         }
-        
-     
         
         $totalPendentes = (clone $query)->where('status', '0')->count();
         $totalAtendidas = (clone $query)->where('status', '1')->count();

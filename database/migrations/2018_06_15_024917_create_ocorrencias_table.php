@@ -27,7 +27,7 @@ class CreateOcorrenciasTable extends Migration
             $table->foreign('id_paciente')->references('id')->on('pacientes');
             $table->foreign('id_tipo_ocorrencia')->references('id')->on('tipo_ocorrencias');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->enum('status', [0,1,2]); //0-Em aberto/1-Em atendimento/2-Socorro enviado/3-Atendida ;
+            $table->smallInteger('status')->default(0); //0-Em aberto/1-Em atendimento/2-Socorro enviado/3-Atendida ;
             $table->text('observacoes')->nullable();
             $table->string('_key')->nullable();
             $table->timestamps();

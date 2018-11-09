@@ -11,20 +11,36 @@ $(document).ready(function(){
                 }
             });
     });
-});
-
-function enviarSocorro(id_ocorrencia) {
-    formModal.criar({
-        title: "Mensagem do atendente",        
-        url: "/ocorrencias/" + id_ocorrencia + '/atendimento',
+    
+    $('#formMensagemAtendente').submit(function(){
+        var idOcorrencia = $('#id_ocorrencia').val();
+        var url = "/ocorrencias/" + idOcorrencia + '/atendimento';
+        var data = $(this).serialize();
+        $.post(url, data, function(ret){
+            updateOcorrenciaFirebase($('#key').val(), {
+                status: 1,
+                mensagemAtendente: $('#mensagem_atendente').val(),
+                dataAtendimento: ret.data_atendimento,
+                instituicao:{
+                    id: parseInt($('#id_instituicao').val()),
+                    nome: $('#nome_instituicao').val(),
+                    idInstituicaoOrgao: parseInt($('#id_orgao').val())
+                }
+            });
+            
+            $.notify(ret.message, 'success');
+            setTimeout(function(){
+                location.reload();
+            }, 800);
+        }); 
         
-        onConfirm: function () {
-           salvarAtendimento();
-        }
+        return false;
     });
-
-
-}
+    
+    $('#btFinalizarAtendimento').click(function(){
+        finalizarAtendimento($('#id_ocorrencia').val());
+    })
+});
 
 function bloquearUsuarioFirebase(key){
     var url = "/paciente/bloquear";
@@ -63,30 +79,9 @@ function finalizarAtendimento(id_ocorrencia) {
                     $.notify(ret.message, "success");
                     updateOcorrenciaFirebase($('#key').val(), {status: 2});
                     setTimeout(function(){
-                        location.href = "/ocorrencias/" + id_ocorrencia;
+                        location.reload();
                     }, 800);
                 });
             }
         });
-}
-
-function salvarAtendimento() {
-    var id_ocorrencia = $('#id_ocorrencia').val();
-    formAjax.send({
-        url: "/ocorrencias/" + id_ocorrencia + "/atendimento",
-        type: $("#formAtendimento").attr("method"),
-        data: $("#formAtendimento").serialize(),
-        afterSuccess: function () {
-            updateOcorrenciaFirebase($('#key').val(), {
-                status: 1,
-                mensagemAtendente: $('#mensagem_atendente').val(),
-                atendente:{
-                    id: parseInt($('#id_user').val()),
-                    nome: $('#nome_user').val(),
-                    instituicao: $('#nome_instituicao').val()
-                }
-            });
-            location.href = "/ocorrencias/" + id_ocorrencia;
-        }
-    });
 }

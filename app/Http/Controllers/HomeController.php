@@ -62,7 +62,7 @@ class HomeController extends Controller {
 
     public static function getSkin() {
         $skin = "";
-        switch (Auth::user()->instituicao->id_instituicao_orgao) {
+        switch (auth()->user()->instituicao->id_instituicao_orgao) {
             case 1:
                 $skin = "red-light";
                 break;

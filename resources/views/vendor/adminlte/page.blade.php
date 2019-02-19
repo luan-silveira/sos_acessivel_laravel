@@ -65,7 +65,7 @@
                         
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <span class="hidden-xs">{{ Auth::user()->instituicao->nome }}</span>
+                              <span class="hidden-xs">{{!Auth::user() ?: Auth::user()->instituicao->nome }}</span>
                             </a>
                             
                           </li>

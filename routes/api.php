@@ -13,6 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::get('/teste', function (Request $request) {
+    return App\User::first();
+});
+
+Route::group(['middleware' => ['api']], function(){
+    Route::post('paciente/create', 'Admin\PacienteController@createPacienteApi');
+    Route::get('/ocorrencia/{id_ocorrencia}', 'Admin\OcorrenciaController@detalhes')->name('ocorrencias.detalhes');
 });

@@ -21,4 +21,11 @@ class Paciente extends Model{
     public function isBloqueado(): bool{
         return ($this->is_bloqueado == 1);
     }
+    
+    public function rules(){
+        return [
+            'nome' => 'required|string',
+            '_key' => 'unique:pacientes,_key' . (!$this->id ?: ",$this->id")
+        ];
+    }
 }

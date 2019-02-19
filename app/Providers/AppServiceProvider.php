@@ -9,6 +9,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 
 class AppServiceProvider extends ServiceProvider {
+
     /**
      * Bootstrap any application services.
      *
@@ -20,58 +21,54 @@ class AppServiceProvider extends ServiceProvider {
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
             $event->menu->add('CONFIGURAÇÕES DA CONTA');
             $event->menu->add([
-                    'text' => 'Perfil',
-                    'url'  => 'usuario',
-                    'icon' => 'user',
-                ]);            
-            
-            if(Auth::user()->tipo == 1){                
-                $event->menu->add('CADASTROS');
-                $event->menu->add([
-                        'text' => 'Instituições de Atendimento',
-                        'url'  => 'instituicoes-atendimento',
-                        'icon' => 'medkit', 
-                    ],
-                    [
-                       'text' => 'Usuários',
-                        'url'  => 'usuarios',
-                        'icon' => 'user', 
-                    ]);
-            }
-            $event->menu->add('OCORRÊNCIAS');
-            $event->menu->add([
-                                'text'       => 'Todas',
-                                'url'  => 'ocorrencias',
-                            ],
-                            [
-                                'text'       => 'Em aberto',
-                                'icon_color' => 'red',
-                                'url'  => 'ocorrencias/status/0',
-                            ],
-                            [
-                                'text'       => 'Atendidas',
-                                'icon_color' => 'blue',
-                                'url'  => 'ocorrencias/status/1',
-                            ],
-                            [
-                                'text'       => 'Finalizadas',
-                                'icon_color' => 'green',
-                                'url'  => 'ocorrencias/status/2'
-                            ]
-                    );
-            
-        });
-        
-    }
+                'text' => 'Perfil',
+                'url' => 'usuario',
+                'icon' => 'user',
+            ]);
 
+            $user = Auth::user();
+            if ($user) {
+                if ($user->tipo == 1) {
+                    $event->menu->add('CADASTROS');
+                    $event->menu->add([
+                        'text' => 'Instituições de Atendimento',
+                        'url' => 'instituicoes-atendimento',
+                        'icon' => 'medkit',
+                            ], [
+                        'text' => 'Usuários',
+                        'url' => 'usuarios',
+                        'icon' => 'user',
+                    ]);
+                }
+                $event->menu->add('OCORRÊNCIAS');
+                $event->menu->add([
+                    'text' => 'Todas',
+                    'url' => 'ocorrencias',
+                        ], [
+                    'text' => 'Em aberto',
+                    'icon_color' => 'red',
+                    'url' => 'ocorrencias/status/0',
+                        ], [
+                    'text' => 'Atendidas',
+                    'icon_color' => 'blue',
+                    'url' => 'ocorrencias/status/1',
+                        ], [
+                    'text' => 'Finalizadas',
+                    'icon_color' => 'green',
+                    'url' => 'ocorrencias/status/2'
+                        ]
+                );
+            }
+        });
+    }
 
     /**
      * Register any application services.
      *
      * @return void
      */
-    public function register()
-    {
+    public function register() {
         //
     }
+
 }

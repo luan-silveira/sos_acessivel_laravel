@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Admin\Paciente;
+use App\Model\Paciente;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 
@@ -54,19 +54,5 @@ class PacienteController extends Controller{
         }
         
         return $isUpdate;
-    }
-    
-    public function createPacienteApi(Request $request){
-        $dataNascimento = Carbon::parse($request->data_nascimento)->format('Y-m-d');
-        $request->merge(['data_nascimento' => $dataNascimento]);
-        $request->_key = $request->key;
-        
-        $paciente = Paciente::firstOrNew(['_key' => $request->key], $request->all());
-        $request->validate($paciente->rules());
-        $paciente->save();
-        
-        return response()->json($paciente, 200);
-        
-    }
-    
+    }    
 }

@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Admin\Paciente;
+use App\Model\Paciente;
 
 class Atendimento extends Model{
 

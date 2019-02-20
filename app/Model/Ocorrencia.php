@@ -3,8 +3,8 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Admin\Paciente;
-use App\Model\Admin\TipoOcorrencia;
+use App\Model\Paciente;
+use App\Model\TipoOcorrencia;
 
 class Ocorrencia extends Model {
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Admin\Ocorrencia;
+use App\Model\Ocorrencia;
 
 class Paciente extends Model{
     protected $table = 'pacientes';

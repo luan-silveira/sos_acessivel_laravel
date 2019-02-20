@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Model\Admin\InstituicaoAtendimento;
+use App\Model\InstituicaoAtendimento;
 class InstituicaoAtendimentoSeeder extends Seeder
 {
     /**

@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth']], function() {
     
     Route::get('/home', 'Admin\AdminController@index');
 
-    Route::group(['namespace' => 'Admin', 'middleware' => ['admin']], function() {
+    Route::group(['middleware' => ['admin']], function() {
         Route::get('/atendentes', 'AtendenteController@index')->name('admin.atendentes');
         Route::resource('/classificacoes-ocorrencia', 'ClassificacaoOcorrenciaController');
         Route::resource('/usuarios', 'UserController');

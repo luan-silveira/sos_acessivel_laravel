@@ -9,7 +9,6 @@
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",
         "jeroennoten/laravel-adminlte": "^1.23",
-        "kreait/firebase-php": "^4.16.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0"
     },

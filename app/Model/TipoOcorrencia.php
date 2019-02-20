@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Admin\ClassificacaoOcorrencia;
+use App\Model\ClassificacaoOcorrencia;
 
 class TipoOcorrencia extends Model {
     

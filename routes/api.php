@@ -21,7 +21,7 @@ Route::get('/teste', function (Request $request) {
     return App\User::first();
 });
 
-Route::group(['middleware' => ['api']], function(){
-    Route::post('paciente/create', 'Admin\PacienteController@createPacienteApi');
-    Route::get('/ocorrencia/{id_ocorrencia}', 'Admin\OcorrenciaController@detalhes')->name('ocorrencias.detalhes');
+Route::group(['namespace' => 'Api', 'middleware' => ['api']], function(){
+    Route::post('paciente/create', 'PacienteController@createPacienteApi');
+    Route::get('/ocorrencia/{id_ocorrencia}', 'OcorrenciaController@detalhes');
 });

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Admin\Atendente;
+use App\Model\Atendente;
 use App\Http\Controllers\Controller;
 
 class AtendenteController extends Controller {

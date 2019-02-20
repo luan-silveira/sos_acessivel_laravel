@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Model\Admin\Estado;
-use App\Model\Admin\InstituicaoOrgao;
-use App\Model\Admin\InstituicaoAtendimento;
+use App\Model\Estado;
+use App\Model\InstituicaoOrgao;
+use App\Model\InstituicaoAtendimento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 

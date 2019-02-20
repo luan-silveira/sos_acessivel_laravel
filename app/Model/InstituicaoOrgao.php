@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model;
 
-use App\Model\Admin\InstituicaoOrgao;
-use App\Model\Admin\TipoOcorrencia;
+use App\Model\InstituicaoOrgao;
+use App\Model\TipoOcorrencia;
 use Illuminate\Database\Eloquent\Model;
 
 class InstituicaoOrgao extends Model {

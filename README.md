@@ -56,9 +56,9 @@ Após as tabelas criadas, execute o comando para popular as tabelas com registro
 php artisan db:seed
 ```
 
-#### Observação
-Para a aplicação funcionar corretamente, é necessário criar um servidor virtual ou executar em servidor que possua um domínio definido.
-Se estiver utilizando o Apache (Wamp, XAMPP, etc.), crie um servidor virtual alterando o arquivo `{instalação wamp/xampp}\apache\conf\extra\httpd-vhosts.conf` da seguinte forma, tuilizando o exemplo abaixo:
+## Observações
+* Este projeto requer PHP >= 7.0
+* Para a aplicação funcionar corretamente, é necessário criar um servidor virtual ou executar em servidor que possua um domínio definido. Se estiver utilizando o Apache (Wamp, XAMPP, etc.), crie um servidor virtual alterando o arquivo `{instalação wamp/xampp}\apache\conf\extra\httpd-vhosts.conf` da seguinte forma, tuilizando o exemplo abaixo:
 ```
 <VirtualHost *:80>
     DocumentRoot "C:/xampp/htdocs/sos_acessivel_laravel/public"
@@ -66,7 +66,7 @@ Se estiver utilizando o Apache (Wamp, XAMPP, etc.), crie um servidor virtual alt
 	ServerAlias sosacessivel.com.br
 </VirtualHost>
 ```
-Se estiver no Windows, altere também o arquivo `hosts` localizado em  `C:\Windows\System32\drivers\etc`, adicionando a linha abixo:
+* Se estiver no Windows, altere também o arquivo `hosts` localizado em  `C:\Windows\System32\drivers\etc`, adicionando a linha abixo:
 ```
 127.0.0.1 sosacessivel.com.br
 ```

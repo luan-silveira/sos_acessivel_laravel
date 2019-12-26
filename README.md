@@ -58,7 +58,7 @@ php artisan db:seed
 
 ## Observações
 * Este projeto requer PHP >= 7.0
-* Para a aplicação funcionar corretamente, é necessário criar um servidor virtual ou executar em servidor que possua um domínio definido. Se estiver utilizando o Apache (Wamp, XAMPP, etc.), crie um servidor virtual alterando o arquivo `{instalação wamp/xampp}\apache\conf\extra\httpd-vhosts.conf` da seguinte forma, tuilizando o exemplo abaixo:
+* Para a aplicação funcionar corretamente, é necessário criar um servidor virtual ou executar em servidor que possua um domínio definido. Se estiver utilizando o Apache (Wamp, XAMPP, etc.), crie um servidor virtual alterando o arquivo `{instalação wamp/xampp}\apache\conf\extra\httpd-vhosts.conf` da seguinte forma, utilizando o exemplo abaixo:
 ```
 <VirtualHost *:80>
     DocumentRoot "C:/xampp/htdocs/sos_acessivel_laravel/public"
@@ -66,7 +66,7 @@ php artisan db:seed
 	ServerAlias sosacessivel.com.br
 </VirtualHost>
 ```
-* Se estiver no Windows, altere também o arquivo `hosts` localizado em  `C:\Windows\System32\drivers\etc`, adicionando a linha abixo:
+* Se estiver no Windows, altere também o arquivo `hosts` localizado em  `C:\Windows\System32\drivers\etc`, adicionando a linha abaixo:
 ```
 127.0.0.1 sosacessivel.com.br
 ```
